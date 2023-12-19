@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+
+@mixin button-styles($color) {
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $color;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    background-color: $hover-color;
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.navigation__button {
+  @include button-styles(white);
+}
+
+.navigation__button--active {
+  @include button-styles($hover-color);
+  color: $hover-color;
+}
