@@ -1,6 +1,8 @@
 import React, { FC } from "react";
-import Header from "../components/header";
-import PagesNavigation from "../components/pages_navigation";
+import Header from "../components/Header";
+import PagesNavigation from "../components/PagesNavigation";
+import NewProducts from "../components/NewProducts";
+import DeliveryInfo from "../components/DeliveryInfo";
 
 const MainPage: FC = () => {
   return (
@@ -8,6 +10,8 @@ const MainPage: FC = () => {
       <Header />
       <div className="container">
         <PagesNavigation />
+        <NewProducts />
+        <DeliveryInfo />
       </div>
     </>
   );
