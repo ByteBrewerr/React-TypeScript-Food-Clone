@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import PagesNavigation from "../components/PagesNavigation";
 import NewProducts from "../components/NewProducts";
 import DeliveryInfo from "../components/DeliveryInfo";
+import FoodNavigation from "../components/FoodNavigation";
 
 const MainPage: FC = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage: FC = () => {
         <PagesNavigation />
         <NewProducts />
         <DeliveryInfo />
+        <FoodNavigation />
       </div>
     </>
   );

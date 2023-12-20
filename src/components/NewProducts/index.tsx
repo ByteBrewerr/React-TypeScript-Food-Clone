@@ -3,17 +3,14 @@ import React, { FC, useState } from "react";
 import ReactDOM from "react-dom";
 import newProducts from "../../assets/newProducts.jpg";
 import "./NewProducts.scss";
+import { usePopUp } from "../../hooks/usePopUp";
 
 type PopUpProps = {
   onClose: () => void;
 };
 
 const NewProducts: FC = () => {
-  const [isPopupVisible, setPopupVisible] = useState(false);
-
-  const togglePopup = () => {
-    setPopupVisible(!isPopupVisible);
-  };
+  const { isPopUpVisible, handlePopUp } = usePopUp();
 
   const portalContainer = document.getElementById("portal-container");
 
@@ -24,12 +21,12 @@ const NewProducts: FC = () => {
 
   return (
     <div>
-      <img className="NewProductsImage" src={newProducts} alt="New Products" onClick={togglePopup} />
+      <img className="NewProductsImage" src={newProducts} alt="New Products" onClick={handlePopUp} />
 
-      {isPopupVisible && (
+      {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<div className="Overlay" onClick={togglePopup}></div>, portalContainer)}
-          {ReactDOM.createPortal(<Popup onClose={togglePopup} />, portalContainer)}
+          {ReactDOM.createPortal(<div className="Overlay" onClick={handlePopUp}></div>, portalContainer)}
+          {ReactDOM.createPortal(<Popup onClose={handlePopUp} />, portalContainer)}
         </>
       )}
     </div>

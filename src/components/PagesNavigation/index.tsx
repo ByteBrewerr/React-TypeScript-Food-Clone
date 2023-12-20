@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import "./pagesNavigation.scss";
 
 const PagesNavigation: FC = () => {
   const [active, setActive] = useState(0);
@@ -12,6 +11,7 @@ const PagesNavigation: FC = () => {
           <span
             className={index === active ? "navigation__button--active" : "navigation__button"}
             onClick={() => setActive(index)}
+            key={index}
           >
             {text}
           </span>

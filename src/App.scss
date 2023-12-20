@@ -1,3 +1,7 @@
+@import './styles/variables.scss';
+@import './styles/mixins.scss';
+
+
 body {
   margin: 0;
   padding: 0;
@@ -6,8 +10,30 @@ body {
   background-color: black; 
   color: white
 }
+
 .container{
   max-width: 1110px;
   height: 100%;
   margin: auto;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.navigation__button {
+  @include button-styles(white);
+  
+  &:active {
+    transform: scale(0.9); 
+    transition: transform 0.1s ease; 
+  }
+}
+
+.navigation__button--active {
+  @include button-styles($hover-color);
+  color: $hover-color;
 }
