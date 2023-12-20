@@ -25,7 +25,7 @@ body {
 }
 
 .navigation__button {
-  @include button-styles(white);
+  @include nav-button-styles(white);
   
   &:active {
     transform: scale(0.9); 
@@ -34,6 +34,6 @@ body {
 }
 
 .navigation__button--active {
-  @include button-styles($hover-color);
+  @include nav-button-styles($hover-color);
   color: $hover-color;
 }

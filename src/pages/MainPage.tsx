@@ -4,6 +4,7 @@ import PagesNavigation from "../components/PagesNavigation";
 import NewProducts from "../components/NewProducts";
 import DeliveryInfo from "../components/DeliveryInfo";
 import FoodNavigation from "../components/FoodNavigation";
+import FoodDisplay from "../components/FoodDisplay";
 
 const MainPage: FC = () => {
   return (
@@ -14,6 +15,7 @@ const MainPage: FC = () => {
         <NewProducts />
         <DeliveryInfo />
         <FoodNavigation />
+        <FoodDisplay />
       </div>
     </>
   );
