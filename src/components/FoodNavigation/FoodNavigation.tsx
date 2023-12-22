@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //вынести в константы
 const FoodNavigation = () => {
   const [active, setActive] = useState(0);
-  const foodCategories = ["Популярное", "Бургеры", "Боксы", "ДОПЫ", "Салаты", "Закуски", "Десерты", "Напитки", "Соусы"];
+  const foodCategories = ["Популярное", "Бургеры", "Боксы", "Салаты", "Закуски", "Десерты", "Напитки", "Соусы"];
   return (
     <nav className="navigation">
       {foodCategories.map((category, index) => {

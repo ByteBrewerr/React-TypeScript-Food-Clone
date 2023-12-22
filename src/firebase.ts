@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.REACT_APP_API_KEY,
-  authDomain: import.meta.env.REACT_APP_AUTH_DOMAIN,
-  projectId: import.meta.env.REACT_APP_PROJECT_ID,
-  storageBucket: import.meta.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: import.meta.env.REACT_APP_APP_ID,
+  apiKey: "AIzaSyC3HHRB-PtgWyvtxsvVOyFM3yDpCEXz__Q",
+  authDomain: "food-clone-7945b.firebaseapp.com",
+  projectId: "food-clone-7945b",
+  storageBucket: "food-clone-7945b.appspot.com",
+  messagingSenderId: "277114956425",
+  appId: "1:277114956425:web:18b4afad8e1c8c5242b458",
 };
 
 const app = initializeApp(firebaseConfig);

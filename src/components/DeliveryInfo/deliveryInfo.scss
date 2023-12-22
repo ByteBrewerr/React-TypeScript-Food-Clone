@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 
+
 .deliveryInfo {
   display: flex;
   justify-content: space-evenly;
@@ -15,6 +16,8 @@
   }
 
   &__time,
+  &__delivery,
+  &__free,
   &__cost {
     display: flex;
     align-items: center;

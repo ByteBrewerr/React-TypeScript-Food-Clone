@@ -1,0 +1,56 @@
+@import '../../../styles/variables.scss';
+
+.foodItem {
+    width: calc(25% - 15px);
+    min-width: 250px;
+    height: 25rem;
+    background-color: $primary-color;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    margin-bottom: 1.5rem;
+
+    img {
+        width: 100%;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        height: 40%;
+    }
+}
+
+.foodItem__info{
+    min-height: 131px;
+    padding: 0rem 0.6rem; 
+}
+
+.foodItem__sizeAndOptions{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 0.6rem; 
+
+    button{
+        height: 2rem;
+        color: white;
+        cursor: pointer;
+        background-color: $button-color;
+        border-radius: 8px;
+        border: none;
+    }
+}
+.foodItem__priceAndCartButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 0.6rem; 
+    border-top: 1px solid gray;
+
+    button{
+        height: 2.5rem;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: bold;
+        background: none;
+        cursor: pointer;;
+        border-radius: 6px;
+        border: none;
+    }
+}

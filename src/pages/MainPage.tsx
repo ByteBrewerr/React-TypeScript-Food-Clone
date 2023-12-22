@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import Header from "../components/Header";
-import PagesNavigation from "../components/PagesNavigation";
-import NewProducts from "../components/NewProducts";
-import DeliveryInfo from "../components/DeliveryInfo";
-import FoodNavigation from "../components/FoodNavigation";
-import FoodDisplay from "../components/FoodDisplay";
+import Header from "../components/Header/Header";
+import PagesNavigation from "../components/PagesNavigation/PagesNavigation";
+import NewProducts from "../components/NewProducts/NewProducts";
+import DeliveryInfo from "../components/DeliveryInfo/DeliveryInfo";
+import FoodNavigation from "../components/FoodNavigation/FoodNavigation";
+import FoodDisplay from "../components/FoodDisplay/FoodItem";
 
 const MainPage: FC = () => {
   return (
