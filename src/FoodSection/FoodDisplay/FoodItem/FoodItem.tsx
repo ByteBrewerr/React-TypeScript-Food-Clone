@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Product } from "../FoodItem";
+import { Product } from "../FoodDisplay";
 import "./foodItem.scss";
 
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
