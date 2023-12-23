@@ -28,8 +28,8 @@ body {
 }
 
 .navigation__button {
+  color:white;
   @include nav-button-styles(white);
-  
   &:active {
     transform: scale(0.9); 
     transition: transform 0.1s ease; 

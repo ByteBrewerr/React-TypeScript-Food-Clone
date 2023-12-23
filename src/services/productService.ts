@@ -1,39 +1,24 @@
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { Product } from "../FoodSection/FoodDisplay/FoodDisplay";
+import { Product } from "../components/FoodSection/FoodDisplay/FoodDisplay";
+
+const categoryToQueryMap: Record<string, any> = {
+  Популярное: where("isPopular", "==", true),
+  Бургеры: where("type", "==", "Бургеры"),
+  Боксы: where("type", "==", "Боксы"),
+  Салаты: where("type", "==", "Салаты"),
+  Закуски: where("type", "==", "Закуски"),
+  Десерты: where("type", "==", "Десерты"),
+  Напитки: where("type", "==", "Напитки"),
+  Соусы: where("type", "==", "Соусы"),
+};
 
 const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
     let q = query(collection(db, "products"));
 
-    if (category === "Популярное") {
-      q = query(collection(db, "products"), where("isPopular", "==", true));
-    }
-
-    if (category === "Бургеры") {
-      q = query(collection(db, "products"), where("type", "==", "Бургеры"));
-    }
-
-    if (category === "Боксы") {
-      q = query(collection(db, "products"), where("type", "==", "Боксы"));
-    }
-
-    if (category === "Салаты") {
-      q = query(collection(db, "products"), where("type", "==", "Салаты"));
-    }
-
-    if (category === "Закуски") {
-      q = query(collection(db, "products"), where("type", "==", "Закуски"));
-    }
-
-    if (category === "Десерты") {
-      q = query(collection(db, "products"), where("type", "==", "Десерты"));
-    }
-    if (category === "Напитки") {
-      q = query(collection(db, "products"), where("type", "==", "Напитки"));
-    }
-    if (category === "Соусы") {
-      q = query(collection(db, "products"), where("type", "==", "Соусы"));
+    if (categoryToQueryMap.hasOwnProperty(category)) {
+      q = query(collection(db, "products"), categoryToQueryMap[category]);
     }
 
     const querySnapshot = await getDocs(q);

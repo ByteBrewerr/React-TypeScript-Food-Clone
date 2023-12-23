@@ -1,0 +1,19 @@
+@import '../.././../../styles/variables.scss';
+.skeleton{
+    width: calc(25% - 15px);
+    min-height: 250px;
+    height: 25rem;
+    border-radius: 15px;
+    background-color: $primary-color;
+    display: flex;
+}
+.skeleton__image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    height: 40%;
+    background-color: gray;
+}

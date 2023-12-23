@@ -1,8 +1,9 @@
 import React from "react";
 import FoodItem from "./FoodItem/FoodItem";
 import img from "../../assets/newProducts.jpg";
-import useProductsStore from "../../stores/productsStore";
+import useProductsStore from "../../../stores/productsStore";
 import "./foodDisplay.scss";
+import { Skeleton } from "./Skeleton/Skeleton";
 
 export type Product = {
   img: typeof img;
@@ -15,12 +16,13 @@ export type Product = {
 };
 
 export const FoodDisplay = () => {
-  const { products } = useProductsStore();
+  const { products, isLoading } = useProductsStore();
+
   return (
     <div className="foodDisplay">
-      {products.map((product) => {
-        return <FoodItem key={product.id} product={product} />;
-      })}
+      {isLoading
+        ? Array.from({ length: 8 }).map(() => <Skeleton />)
+        : products.map((product) => <FoodItem key={product.id} product={product} />)}
     </div>
   );
 };

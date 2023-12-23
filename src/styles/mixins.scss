@@ -1,6 +1,9 @@
 @mixin nav-button-styles($color) {
     position: relative;
     cursor: pointer;
+    border-style: none;
+    background: none;
+    font-size: 1rem;
     transition: color 0.3s ease;
   
     &:hover {
