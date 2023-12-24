@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+.newProductsPopup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $primary-color;
+    border-radius: 3%;
+    padding: 20px;
+    z-index: 1000;
+
+    img{
+        width: 40rem;
+    }
+      
+}

@@ -42,7 +42,9 @@
     align-items: center;
     padding: 0rem 0.6rem; 
     border-top: 1px solid gray;
-
+    h2{
+        color: $button-color;
+    }
     button{
         height: 2.5rem;
         color: white;

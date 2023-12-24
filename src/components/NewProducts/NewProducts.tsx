@@ -1,13 +1,10 @@
 // NewProducts.jsx
 import React, { FC, useState } from "react";
 import ReactDOM from "react-dom";
+import { usePopUp } from "../../hooks/usePopUp";
+import NewProductsPopup from "../../shared/modals/newProducts/newProductsPopup";
 import newProducts from "../../assets/newProducts.jpg";
 import "./NewProducts.scss";
-import { usePopUp } from "../../hooks/usePopUp";
-
-type PopUpProps = {
-  onClose: () => void;
-};
 
 const NewProducts: FC = () => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
@@ -25,21 +22,10 @@ const NewProducts: FC = () => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<div className="Overlay" onClick={handlePopUp}></div>, portalContainer)}
-          {ReactDOM.createPortal(<Popup onClose={handlePopUp} />, portalContainer)}
+          {ReactDOM.createPortal(<div className="overlay" onClick={handlePopUp}></div>, portalContainer)}
+          {ReactDOM.createPortal(<NewProductsPopup onClose={handlePopUp} />, portalContainer)}
         </>
       )}
-    </div>
-  );
-};
-
-const Popup: FC<PopUpProps> = ({ onClose }) => {
-  return (
-    <div className="Popup">
-      <img src={newProducts} alt="New Products" />
-      <p>Новые бургеры!</p>
-      <p>Встречайте два новых бургера! Рокки и Гриб Грибыч</p>
-      <button onClick={onClose}>Закрыть</button>
     </div>
   );
 };

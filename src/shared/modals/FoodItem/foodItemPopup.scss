@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+
+.foodItemPopup{
+    background-color: $primary-color;
+    position: absolute;
+    width: 43rem;
+    border-radius: 15px;
+    padding: 20px;
+    height: 1200px;
+    margin-top: 2rem;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1001;
+}
