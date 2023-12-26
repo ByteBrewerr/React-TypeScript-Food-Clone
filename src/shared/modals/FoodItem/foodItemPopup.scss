@@ -1,15 +1,71 @@
 @import '../../../styles/variables.scss';
-
-.foodItemPopup{
-    background-color: $primary-color;
+.foodItemContainer{
     position: absolute;
-    width: 43rem;
-    border-radius: 15px;
-    padding: 20px;
-    height: 1200px;
-    margin-top: 2rem;
+    height: auto;
+    width: 45rem;
     top: 0%;
     left: 50%;
     transform: translate(-50%, 0);
-    z-index: 1001;
+    z-index: 10;
+    padding: 1rem;
+
+    .foodItemPopup{
+        background-color: $primary-color;
+        border-radius: 15px;
+        padding: 20px;
+        height: 100%;
+        z-index: 1011;
+        margin: 2rem 0;
+
+        .separator{
+            height: 1px;
+            background-color: gray;
+            width: 100%;
+            margin-top: 1rem;
+        }
+    
+        img{
+            width: 100%;
+        }
+    
+        p{
+            font-size: 0.8rem;
+        }
+        
+        .price{
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .price-quantity-container{
+            > div:first-child {
+                color: gray; 
+                display: flex;
+                justify-content: space-between;
+                span{
+                    font-size: 0.9rem;
+                }
+               
+            }
+
+            > div:last-child {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 1rem;
+                span{
+                    font-size: 0.9rem;
+                    color: $button-color;
+                }
+               
+            }
+        }
+        
+    }
+    
+    
 }
+
+
+
+
+

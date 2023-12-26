@@ -4,6 +4,7 @@ import { usePopUp } from "../../../../hooks/usePopUp";
 import FoodItemPopup from "../../../../shared/modals/FoodItem/FoodItemPopup";
 import ReactDOM from "react-dom";
 import "./foodItem.scss";
+import Overlay from "../../../../shared/modals/Overlay/Overlay";
 
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
@@ -38,8 +39,8 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<div className="overlay" onClick={handlePopUp}></div>, portalContainer)}
-          {ReactDOM.createPortal(<FoodItemPopup onClose={handlePopUp} />, portalContainer)}
+          {ReactDOM.createPortal(<Overlay handlePopup={handlePopUp} />, portalContainer)}
+          {ReactDOM.createPortal(<FoodItemPopup onClose={handlePopUp} product={product} />, portalContainer)}
         </>
       )}
     </>

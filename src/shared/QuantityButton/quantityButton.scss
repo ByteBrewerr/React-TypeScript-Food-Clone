@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.quantityButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: none;
+    border-radius: 6px;
+    padding: 4px;
+    background-color: $button-color;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.9); 
+        transition: transform 0.1s ease; 
+      }
+}

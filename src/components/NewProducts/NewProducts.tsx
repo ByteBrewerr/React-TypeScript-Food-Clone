@@ -2,9 +2,10 @@
 import React, { FC, useState } from "react";
 import ReactDOM from "react-dom";
 import { usePopUp } from "../../hooks/usePopUp";
-import NewProductsPopup from "../../shared/modals/newProducts/newProductsPopup";
+import NewProductsPopup from "../../shared/modals/NewProducts/NewProductsPopup";
 import newProducts from "../../assets/newProducts.jpg";
 import "./NewProducts.scss";
+import Overlay from "../../shared/modals/Overlay/Overlay";
 
 const NewProducts: FC = () => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
@@ -22,7 +23,7 @@ const NewProducts: FC = () => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<div className="overlay" onClick={handlePopUp}></div>, portalContainer)}
+          {ReactDOM.createPortal(<Overlay handlePopup={handlePopUp} />, portalContainer)}
           {ReactDOM.createPortal(<NewProductsPopup onClose={handlePopUp} />, portalContainer)}
         </>
       )}
