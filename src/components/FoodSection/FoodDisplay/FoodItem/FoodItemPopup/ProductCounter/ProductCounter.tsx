@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import QuantityButton, { ButtonType } from "../../../QuantityButton/QuantityButton";
+import QuantityButton, { ButtonType } from "../../../../../../shared/QuantityButton/QuantityButton";
 import "./productCounter.scss";
 
 const ProductCounter = () => {
@@ -10,7 +10,10 @@ const ProductCounter = () => {
   };
 
   const decreaseCount = () => {
-    setProductCount((prev) => prev - 1);
+    setProductCount((prev) => {
+      if (prev > 0) return prev - 1;
+      return prev;
+    });
   };
 
   return (

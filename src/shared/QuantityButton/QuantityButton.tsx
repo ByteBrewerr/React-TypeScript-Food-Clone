@@ -3,8 +3,8 @@ import "./quantityButton.scss";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 export enum ButtonType {
-  INCREASE = "+",
-  DECREASE = "-",
+  INCREASE,
+  DECREASE,
 }
 
 type QuantityButtonProps = {

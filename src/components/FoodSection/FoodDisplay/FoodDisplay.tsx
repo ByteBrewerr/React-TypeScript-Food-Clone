@@ -15,13 +15,13 @@ export type Product = {
   type: string;
 };
 
-export const FoodDisplay = () => {
+const FoodDisplay = () => {
   const { products, isLoading } = useProductsStore();
 
   return (
     <div className="foodDisplay">
       {isLoading
-        ? Array.from({ length: 8 }).map(() => <Skeleton />)
+        ? Array.from({ length: 8 }).map((_, index) => <Skeleton key={index} />)
         : products.map((product) => <FoodItem key={product.id} product={product} />)}
     </div>
   );

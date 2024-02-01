@@ -28,7 +28,7 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
         <div className="foodItem__sizeAndOptions">
           <h3>1 шт.</h3>
-          <button onClick={() => handlePopUp()}>Опции</button>
+          {product.type === "Бургеры" && <button onClick={() => handlePopUp()}>Опции</button>}
         </div>
 
         <div className="foodItem__priceAndCartButton">
