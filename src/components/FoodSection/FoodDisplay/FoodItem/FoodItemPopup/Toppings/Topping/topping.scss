@@ -1,10 +1,14 @@
 @import '../../../../../../../styles/variables.scss';
 .topping{
-    p{
-        font-weight: bold;  
-    }
+    display: flex;
+    justify-content: space-between;
+
     &Price{
         color: $button-color;
+        margin: 0.3rem 0;
     }
-   
+    &Name{
+        font-weight: bold;  
+        margin: 0.3rem 0;
+    }   
 }

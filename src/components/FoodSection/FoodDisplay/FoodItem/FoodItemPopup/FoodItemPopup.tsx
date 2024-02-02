@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import "./FoodItemPopup.scss";
-import { Product } from "../../../components/FoodSection/FoodDisplay/FoodDisplay";
-import ProductCounter from "../../../components/FoodSection/FoodDisplay/FoodItem/FoodItemPopup/ProductCounter/ProductCounter";
-import Toppings from "../../../components/FoodSection/FoodDisplay/FoodItem/FoodItemPopup/Toppings/Toppings";
+import { Product } from "../../FoodDisplay";
+import ProductCounter from "./ProductCounter/ProductCounter";
+import Toppings from "./Toppings/Toppings";
 
 type PopUpProps = {
   onClose: () => void;

@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 import { Product } from "../FoodDisplay";
 import { usePopUp } from "../../../../hooks/usePopUp";
-import FoodItemPopup from "../../../../shared/modals/FoodItem/FoodItemPopup";
+import FoodItemPopup from "./FoodItemPopup/FoodItemPopup";
 import ReactDOM from "react-dom";
 import "./foodItem.scss";
 import Overlay from "../../../../shared/modals/Overlay/Overlay";
+import useToppingsStore from "../../../../stores/toppingsStore";
 
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
+  const setProduct = useToppingsStore((state) => state.setProduct);
 
   const portalContainer = document.getElementById("portal-container");
 
@@ -16,6 +18,11 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
     return null;
   }
 
+  const handleOpenToppings = () => {
+    handlePopUp();
+    setProduct(product);
+  };
+  console.log(123);
   return (
     <>
       <div className="foodItem">
@@ -28,7 +35,7 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
         <div className="foodItem__sizeAndOptions">
           <h3>1 шт.</h3>
-          {product.type === "Бургеры" && <button onClick={() => handlePopUp()}>Опции</button>}
+          {product.type === "Бургеры" && <button onClick={() => handleOpenToppings()}>Опции</button>}
         </div>
 
         <div className="foodItem__priceAndCartButton">

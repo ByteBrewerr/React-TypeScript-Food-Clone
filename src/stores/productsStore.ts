@@ -27,6 +27,4 @@ const useProductsStore = create<ProductsStore>((set) => ({
   setProducts: (products) => set({ products }),
 }));
 
-useProductsStore.getState().setToppings();
-
 export default useProductsStore;

@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import useToppingsStore from "../../../../../../stores/toppingsStore";
 import QuantityButton, { ButtonType } from "../../../../../../shared/QuantityButton/QuantityButton";
+import { useShallow } from "zustand/react/shallow";
 import "./productCounter.scss";
 
 const ProductCounter = () => {
-  const [productCount, setProductCount] = useState(0);
-
-  const increaseCount = () => {
-    setProductCount((prev) => prev + 1);
-  };
-
-  const decreaseCount = () => {
-    setProductCount((prev) => {
-      if (prev > 0) return prev - 1;
-      return prev;
-    });
-  };
+  const { productCount, increaseCount, decreaseCount } = useToppingsStore((state) => ({
+    productCount: state.productCount,
+    increaseCount: state.increaseCount,
+    decreaseCount: state.decreaseCount,
+  }));
 
   return (
     <div className="productCounter">
