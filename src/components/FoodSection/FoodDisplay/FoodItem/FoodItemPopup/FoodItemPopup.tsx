@@ -1,18 +1,21 @@
 import React, { FC } from "react";
 import "./FoodItemPopup.scss";
-import { Product } from "../../FoodDisplay";
+import { Product } from "../../../../../types/productType";
 import ProductCounter from "./ProductCounter/ProductCounter";
 import Toppings from "./Toppings/Toppings";
-
+import { IoMdClose } from "react-icons/io";
 type PopUpProps = {
   onClose: () => void;
   product: Product;
 };
 
-const FoodItemPopup: FC<PopUpProps> = ({ product }) => {
+const FoodItemPopup: FC<PopUpProps> = ({ product, onClose }) => {
   return (
     <div className="foodItemContainer">
       <div className="foodItemPopup">
+        <button className="closeButton" onClick={() => onClose()}>
+          <IoMdClose />
+        </button>
         <img src={product.img} alt="foodImage" />
         <h5>{product.name}</h5>
         <p>{product.description}</p>

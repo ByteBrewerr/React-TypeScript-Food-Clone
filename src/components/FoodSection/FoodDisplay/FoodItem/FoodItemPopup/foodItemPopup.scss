@@ -8,6 +8,16 @@
     transform: translate(-50%, 0);
     z-index: 10;
     padding: 1rem;
+    .closeButton{
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-bottom: 1rem;
+        border-radius: 0.2rem;
+        cursor: pointer;
+    }
 
     .foodItemPopup{
         background-color: $primary-color;

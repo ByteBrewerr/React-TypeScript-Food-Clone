@@ -1,7 +1,6 @@
 import React from "react";
 import useToppingsStore from "../../../../../../stores/toppingsStore";
 import QuantityButton, { ButtonType } from "../../../../../../shared/QuantityButton/QuantityButton";
-import { useShallow } from "zustand/react/shallow";
 import "./productCounter.scss";
 
 const ProductCounter = () => {

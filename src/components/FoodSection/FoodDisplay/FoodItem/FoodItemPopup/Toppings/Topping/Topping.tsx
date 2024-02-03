@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import "./topping.scss";
 import CustomCheckbox from "../../../../../../../shared/CustomCheckbox/CustomCheckbox";
 import useToppingsStore from "../../../../../../../stores/toppingsStore";
+import { useShallow } from "zustand/react/shallow";
 
 type ToppingProps = {
   name: string;
@@ -12,19 +13,25 @@ type ToppingProps = {
 const Topping: FC<ToppingProps> = ({ name, price }) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const setPickedTopping = useToppingsStore((state) => state.setPickedToppings);
+  const { setTopping, removeTopping } = useToppingsStore(
+    useShallow((state) => ({
+      setTopping: state.setTopping,
+      removeTopping: state.removeTopping,
+    }))
+  );
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
 
     if (!isChecked) {
-      setPickedTopping({ name, price });
+      setTopping({ name, price });
     }
 
     if (isChecked) {
+      removeTopping({ name, price });
     }
   };
-  console.log(1);
+
   return (
     <div className="topping">
       <div>

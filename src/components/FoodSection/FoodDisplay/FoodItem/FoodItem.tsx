@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Product } from "../FoodDisplay";
+import { Product } from "../../../../types/productType";
 import { usePopUp } from "../../../../hooks/usePopUp";
 import FoodItemPopup from "./FoodItemPopup/FoodItemPopup";
 import ReactDOM from "react-dom";
@@ -10,7 +10,7 @@ import useToppingsStore from "../../../../stores/toppingsStore";
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
   const setProduct = useToppingsStore((state) => state.setProduct);
-
+  const resetToppingsState = useToppingsStore((state) => state.resetState);
   const portalContainer = document.getElementById("portal-container");
 
   if (!portalContainer) {
@@ -18,10 +18,16 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
     return null;
   }
 
+  const handleClosePopup = () => {
+    handlePopUp();
+    resetToppingsState();
+  };
+
   const handleOpenToppings = () => {
     handlePopUp();
     setProduct(product);
   };
+
   console.log(123);
   return (
     <>
@@ -46,8 +52,8 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<Overlay handlePopup={handlePopUp} />, portalContainer)}
-          {ReactDOM.createPortal(<FoodItemPopup onClose={handlePopUp} product={product} />, portalContainer)}
+          {ReactDOM.createPortal(<Overlay handlePopup={handleClosePopup} />, portalContainer)}
+          {ReactDOM.createPortal(<FoodItemPopup onClose={handleClosePopup} product={product} />, portalContainer)}
         </>
       )}
     </>

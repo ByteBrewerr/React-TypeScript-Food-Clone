@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Product } from "../components/FoodSection/FoodDisplay/FoodDisplay";
+import { Product } from "../types/productType";
 
 interface ProductsStore {
   products: Product[];

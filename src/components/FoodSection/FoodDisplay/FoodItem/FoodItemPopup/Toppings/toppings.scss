@@ -1,6 +1,21 @@
+@import '../../../../../../styles/variables.scss';
 .toppingsContainer{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem; 
     grid-column-gap: 4rem;
+
+}
+.addToCartBtn{
+    background-color: $button-color;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    width: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 1rem;
+    
 }
