@@ -13,5 +13,13 @@
     img{
         width: 40rem;
     }
+    .onCloseButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
       
 }

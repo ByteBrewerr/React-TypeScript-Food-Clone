@@ -18,7 +18,7 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
     return null;
   }
 
-  const handleClosePopup = () => {
+  const handleCloseToppings = () => {
     handlePopUp();
     resetToppingsState();
   };
@@ -28,7 +28,6 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
     setProduct(product);
   };
 
-  console.log(123);
   return (
     <>
       <div className="foodItem">
@@ -52,8 +51,8 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<Overlay handlePopup={handleClosePopup} />, portalContainer)}
-          {ReactDOM.createPortal(<FoodItemPopup onClose={handleClosePopup} product={product} />, portalContainer)}
+          {ReactDOM.createPortal(<Overlay handlePopup={handleCloseToppings} />, portalContainer)}
+          {ReactDOM.createPortal(<FoodItemPopup onClose={handleCloseToppings} product={product} />, portalContainer)}
         </>
       )}
     </>

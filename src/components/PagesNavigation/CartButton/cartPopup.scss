@@ -1,0 +1,23 @@
+@import '../../../styles/variables.scss';
+.cartPopup{
+    width: 700px;
+    max-width: 720px;
+    height: 435px;
+    max-height: 80vh;
+    background-color: $primaryDark-color;
+    border-radius: 10px;
+    position: absolute;
+    top: 135%;
+    left: -41rem;
+    padding: 20px;
+    h2{
+        margin: 0;
+    }
+    &Header{
+        display: flex;
+        justify-content: space-between;
+        button{
+            cursor: pointer;
+        }
+    }
+}

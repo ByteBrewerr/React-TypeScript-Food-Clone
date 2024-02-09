@@ -6,9 +6,11 @@ import useProductsStore from "../../../stores/productsStore";
 const FoodNavigation = () => {
   const [active, setActive] = useState(0);
   const foodCategories = ["Популярное", "Бургеры", "Боксы", "Салаты", "Закуски", "Десерты", "Напитки", "Соусы"];
-  const { setProducts, setIsLoading } = useProductsStore();
 
-  const { isLoading } = useQuery(
+  const setProducts = useProductsStore((state) => state.setProducts);
+  const setIsLoading = useProductsStore((state) => state.setIsLoading);
+
+  useQuery(
     ["products", active] as QueryKey,
     () => {
       setIsLoading(true);

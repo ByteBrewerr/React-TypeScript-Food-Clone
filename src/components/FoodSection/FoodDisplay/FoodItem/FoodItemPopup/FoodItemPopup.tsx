@@ -4,12 +4,14 @@ import { Product } from "../../../../../types/productType";
 import ProductCounter from "./ProductCounter/ProductCounter";
 import Toppings from "./Toppings/Toppings";
 import { IoMdClose } from "react-icons/io";
+import useToppingsStore from "../../../../../stores/toppingsStore";
 type PopUpProps = {
   onClose: () => void;
   product: Product;
 };
 
 const FoodItemPopup: FC<PopUpProps> = ({ product, onClose }) => {
+  const totalPrice = useToppingsStore((state) => state.totalPrice);
   return (
     <div className="foodItemContainer">
       <div className="foodItemPopup">
@@ -33,6 +35,9 @@ const FoodItemPopup: FC<PopUpProps> = ({ product, onClose }) => {
         <div className="separator"></div>
         <h4>Опции</h4>
         <Toppings />
+        <button className="addToCartBtn" onClick={() => {}}>
+          ДОБАВИТЬ ТОВАР НА {totalPrice} ₽
+        </button>
       </div>
     </div>
   );

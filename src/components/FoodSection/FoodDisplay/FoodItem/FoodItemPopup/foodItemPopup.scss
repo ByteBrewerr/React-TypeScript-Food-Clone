@@ -34,6 +34,20 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
+
+        .addToCartBtn{
+            background-color: $button-color;
+            border: 0;
+            cursor: pointer;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.8rem;
+            width: 100%;
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 1rem;
+            
+        }
     
         img{
             width: 100%;
