@@ -3,7 +3,7 @@ import { BsCart4 } from "react-icons/bs";
 import "./pagesNavigation.scss";
 import { usePopUp } from "../../hooks/usePopUp";
 import ReactDOM from "react-dom";
-import CartButton from "./CartButton/CartPopup";
+import CartButton from "./CartPopup/CartPopup";
 import useCartStore from "../../stores/cartStore";
 
 const PagesNavigation: FC = () => {

@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useQuery, QueryKey } from "react-query";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import productService from "../../../services/productService";
 import useProductsStore from "../../../stores/productsStore";
 
@@ -10,20 +10,19 @@ const FoodNavigation = () => {
   const setProducts = useProductsStore((state) => state.setProducts);
   const setIsLoading = useProductsStore((state) => state.setIsLoading);
 
-  useQuery(
-    ["products", active] as QueryKey,
-    () => {
-      setIsLoading(true);
+  const { isLoading } = useQuery({
+    queryKey: ["products", active],
+    queryFn: () => {
+      setIsLoading(isLoading);
       return productService.getProductsByCategory(foodCategories[active]);
     },
-    {
-      enabled: active !== undefined,
-      onSuccess: (data) => {
-        setProducts(data || []);
-        setIsLoading(false);
-      },
-    }
-  );
+    onSuccess(data) {
+      setProducts(data || []);
+    },
+    onSettled() {
+      setIsLoading(false);
+    },
+  });
 
   return (
     <nav className="navigation">

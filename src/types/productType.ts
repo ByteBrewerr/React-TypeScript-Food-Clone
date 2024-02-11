@@ -13,4 +13,5 @@ export type Product = {
 export type ExtendedProduct = Product & {
   count: number;
   toppings: Topping[];
+  priceWithToppings: number;
 };

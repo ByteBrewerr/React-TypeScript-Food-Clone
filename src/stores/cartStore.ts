@@ -5,6 +5,8 @@ interface CartStore {
   products: ExtendedProduct[];
   totalPrice: number;
   addProduct: (product: ExtendedProduct) => void;
+  increaseProductCount: (productName: string) => void;
+  decreaseProductCount: (productName: string) => void;
 }
 
 const useCartStore = create<CartStore>((set) => ({
@@ -13,6 +15,20 @@ const useCartStore = create<CartStore>((set) => ({
   addProduct: (product) =>
     set((state) => {
       return { products: [...state.products, product] };
+    }),
+  increaseProductCount: (productName) =>
+    set((state) => {
+      const updatedProducts = state.products.map((product) =>
+        product.name === productName ? { ...product, count: product.count + 1 } : product
+      );
+      return { products: updatedProducts };
+    }),
+  decreaseProductCount: (productName) =>
+    set((state) => {
+      const updatedProducts = state.products.map((product) =>
+        product.name === productName && product.count > 0 ? { ...product, count: product.count - 1 } : product
+      );
+      return { products: updatedProducts };
     }),
 }));
 
@@ -29,11 +45,7 @@ const calculateTotalPrice = (products: ExtendedProduct[]): number => {
   let totalPrice = 0;
 
   products.forEach((product) => {
-    totalPrice += product.price * product.count;
-
-    product.toppings.forEach((topping) => {
-      totalPrice += parseFloat(topping.price) * product.count;
-    });
+    totalPrice += product.priceWithToppings * product.count;
   });
 
   return totalPrice;

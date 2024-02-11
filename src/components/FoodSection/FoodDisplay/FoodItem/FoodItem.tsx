@@ -6,17 +6,24 @@ import ReactDOM from "react-dom";
 import "./foodItem.scss";
 import Overlay from "../../../../shared/modals/Overlay/Overlay";
 import useToppingsStore from "../../../../stores/toppingsStore";
+import useCartStore from "../../../../stores/cartStore";
 
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
   const setProduct = useToppingsStore((state) => state.setProduct);
   const resetToppingsState = useToppingsStore((state) => state.resetState);
+  const addProduct = useCartStore((state) => state.addProduct);
   const portalContainer = document.getElementById("portal-container");
 
   if (!portalContainer) {
     alert("no portal");
     return null;
   }
+
+  const handleAddToCart = () => {
+    const extendedProduct = { ...product, count: 1, priceWithToppings: product.price, toppings: [] };
+    addProduct(extendedProduct);
+  };
 
   const handleCloseToppings = () => {
     handlePopUp();
@@ -45,7 +52,7 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
         <div className="foodItem__priceAndCartButton">
           <h2>{product.price} ₽</h2>
-          <button>В КОРЗИНУ</button>
+          <button onClick={() => handleAddToCart()}>В КОРЗИНУ</button>
         </div>
       </div>
 

@@ -16,9 +16,7 @@ const categoryToQueryMap: Record<string, any> = {
 const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
     let q = query(collection(db, "products"));
-    console.log("1");
     if (categoryToQueryMap.hasOwnProperty(category)) {
-      console.log("2");
       q = query(collection(db, "products"), categoryToQueryMap[category]);
     }
 
