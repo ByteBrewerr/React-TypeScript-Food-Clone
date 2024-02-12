@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import useToppingsStore from "../../stores/toppingsStore";
 import QuantityButton, { QuantityButtonType } from "../QuantityButton/QuantityButton";
 import "./productCounter.scss";
 

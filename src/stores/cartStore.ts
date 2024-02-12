@@ -5,8 +5,9 @@ interface CartStore {
   products: ExtendedProduct[];
   totalPrice: number;
   addProduct: (product: ExtendedProduct) => void;
-  increaseProductCount: (productName: string) => void;
-  decreaseProductCount: (productName: string) => void;
+  increaseProductCount: (product: ExtendedProduct) => void;
+  decreaseProductCount: (product: ExtendedProduct) => void;
+  deleteProduct: (product: ExtendedProduct) => void;
 }
 
 const useCartStore = create<CartStore>((set) => ({
@@ -14,19 +15,47 @@ const useCartStore = create<CartStore>((set) => ({
   totalPrice: 0,
   addProduct: (product) =>
     set((state) => {
-      return { products: [...state.products, product] };
+      const existingProductIndex = state.products.findIndex(
+        (existingProduct) =>
+          existingProduct.name === product.name && JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
+      );
+
+      if (existingProductIndex !== -1) {
+        const updatedProducts = [...state.products];
+        updatedProducts[existingProductIndex] = {
+          ...updatedProducts[existingProductIndex],
+          count: updatedProducts[existingProductIndex].count + 1,
+        };
+        return { products: updatedProducts };
+      }
+
+      return { products: [...state.products, { ...product, count: 1 }] };
     }),
-  increaseProductCount: (productName) =>
+  increaseProductCount: (product) =>
     set((state) => {
-      const updatedProducts = state.products.map((product) =>
-        product.name === productName ? { ...product, count: product.count + 1 } : product
+      const updatedProducts = state.products.map((existingProduct) =>
+        existingProduct.name === product.name && JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
+          ? { ...existingProduct, count: existingProduct.count + 1 }
+          : existingProduct
       );
       return { products: updatedProducts };
     }),
-  decreaseProductCount: (productName) =>
+  decreaseProductCount: (product) =>
     set((state) => {
-      const updatedProducts = state.products.map((product) =>
-        product.name === productName && product.count > 0 ? { ...product, count: product.count - 1 } : product
+      const updatedProducts = state.products.map((existingProduct) =>
+        existingProduct.name === product.name &&
+        product.count > 1 &&
+        JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
+          ? { ...existingProduct, count: existingProduct.count - 1 }
+          : existingProduct
+      );
+      return { products: updatedProducts };
+    }),
+  deleteProduct: (product) =>
+    set((state) => {
+      const updatedProducts = state.products.filter(
+        (existingProduct) =>
+          existingProduct.name !== product.name || JSON.stringify(existingProduct.toppings) !== JSON.stringify(product.toppings)
       );
       return { products: updatedProducts };
     }),

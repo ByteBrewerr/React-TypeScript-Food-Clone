@@ -9,6 +9,12 @@ type CartPopupProps = {
 
 const CartPopup: FC<CartPopupProps> = ({ closePopup }) => {
   const cartProducts = useCartStore((state) => state.products);
+
+  if (cartProducts.length === 0) {
+    closePopup();
+    return null;
+  }
+
   return (
     <div className="cartPopup">
       <div className="cartPopupHeader">

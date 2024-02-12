@@ -11,7 +11,8 @@ const CartProducts: FC<CartProductsProps> = ({ products }) => {
   return (
     <div className="cartProducts">
       {products.map((product) => {
-        return <CartProduct product={product} />;
+        const key: string = `${product.id}${product.toppings.map((topping) => `${topping.name}`).join(" ")}`;
+        return <CartProduct product={product} key={key} />;
       })}
     </div>
   );
