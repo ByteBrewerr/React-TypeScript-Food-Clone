@@ -5,10 +5,12 @@ import NewProducts from "../components/NewProducts/NewProducts";
 import DeliveryInfo from "../components/DeliveryInfo/DeliveryInfo";
 import FoodSection from "../components/FoodSection/FoodSection";
 import PaymentInfo from "../components/PaymentInfo/PaymentInfo";
+import { ToastContainer } from "react-toastify";
 
 const MainPage: FC = () => {
   return (
     <>
+      <ToastContainer theme="dark" newestOnTop={true} />
       <Header />
       <div className="container">
         <PagesNavigation />

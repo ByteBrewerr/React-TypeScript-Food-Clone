@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import "./cartPopup.scss";
 import useCartStore from "../../../stores/cartStore";
 import CartProducts from "./CartProducts/CartProducts";
@@ -10,10 +10,11 @@ type CartPopupProps = {
 const CartPopup: FC<CartPopupProps> = ({ closePopup }) => {
   const cartProducts = useCartStore((state) => state.products);
 
-  if (cartProducts.length === 0) {
-    closePopup();
-    return null;
-  }
+  useEffect(() => {
+    if (cartProducts.length === 0) {
+      closePopup();
+    }
+  });
 
   return (
     <div className="cartPopup">

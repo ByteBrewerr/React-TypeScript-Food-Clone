@@ -5,17 +5,24 @@
     border-bottom: 1px solid gray;
     padding: 0.7rem;
     margin-top: 0.35rem;
+
+    &Price{
+        width: 70px;
+        display: flex;
+        justify-content: center;
+    }
+
     &Img{
         width: 60px;
         height: 60px;
         border-radius: 50%;
     }
     &Info{
-        width: 430px;
+        width: 380px;
     }
     &Delete{
         cursor: pointer;
-        font-size: 1.8em;
+        font-size: 1.5em;
         &:hover{
             color: red
         }

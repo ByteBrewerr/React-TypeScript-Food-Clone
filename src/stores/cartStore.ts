@@ -1,20 +1,24 @@
 import { create } from "zustand";
 import { ExtendedProduct } from "../types/productType";
+import { toast } from "react-toastify";
 
 interface CartStore {
   products: ExtendedProduct[];
   totalPrice: number;
-  addProduct: (product: ExtendedProduct) => void;
+  addProduct: (product: ExtendedProduct, count: number) => void;
   increaseProductCount: (product: ExtendedProduct) => void;
   decreaseProductCount: (product: ExtendedProduct) => void;
   deleteProduct: (product: ExtendedProduct) => void;
 }
 
+const notify = () => toast.success("Товар успешно добавлен!");
+
 const useCartStore = create<CartStore>((set) => ({
   products: [],
   totalPrice: 0,
-  addProduct: (product) =>
+  addProduct: (product, countToAdd = 1) =>
     set((state) => {
+      notify();
       const existingProductIndex = state.products.findIndex(
         (existingProduct) =>
           existingProduct.name === product.name && JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
@@ -24,12 +28,12 @@ const useCartStore = create<CartStore>((set) => ({
         const updatedProducts = [...state.products];
         updatedProducts[existingProductIndex] = {
           ...updatedProducts[existingProductIndex],
-          count: updatedProducts[existingProductIndex].count + 1,
+          count: updatedProducts[existingProductIndex].count + countToAdd,
         };
         return { products: updatedProducts };
       }
 
-      return { products: [...state.products, { ...product, count: 1 }] };
+      return { products: [...state.products, { ...product, count: countToAdd }] };
     }),
   increaseProductCount: (product) =>
     set((state) => {
@@ -76,7 +80,6 @@ const calculateTotalPrice = (products: ExtendedProduct[]): number => {
   products.forEach((product) => {
     totalPrice += product.priceWithToppings * product.count;
   });
-
   return totalPrice;
 };
 

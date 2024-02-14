@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import useToppingsStore from "../../../../../stores/toppingsStore";
 import useCartStore from "../../../../../stores/cartStore";
 import { useShallow } from "zustand/react/shallow";
+import "react-toastify/dist/ReactToastify.css";
 
 type PopUpProps = {
   onClose: () => void;
@@ -25,9 +26,19 @@ const FoodItemPopup: FC<PopUpProps> = ({ product, onClose }) => {
       totalPrice: state.totalPrice,
     }))
   );
+
   const handleAddToCart = () => {
-    const extendedProduct = { ...product, count: productCount, priceWithToppings: totalPrice, toppings };
-    addProduct(extendedProduct);
+    let totalToppingPrice = 0;
+
+    totalToppingPrice = toppings.reduce((acc, topping) => acc + parseInt(topping.price), 0);
+    const extendedProduct = {
+      ...product,
+      count: productCount,
+      priceWithToppings: totalToppingPrice + product.price,
+      toppings,
+    };
+    onClose();
+    addProduct(extendedProduct, productCount);
   };
 
   return (

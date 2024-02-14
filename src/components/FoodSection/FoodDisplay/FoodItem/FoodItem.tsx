@@ -22,7 +22,7 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
   const handleAddToCart = () => {
     const extendedProduct = { ...product, count: 1, priceWithToppings: product.price, toppings: [] };
-    addProduct(extendedProduct);
+    addProduct(extendedProduct, 1);
   };
 
   const handleCloseToppings = () => {

@@ -19,6 +19,12 @@
         justify-content: space-between;
         button{
             cursor: pointer;
+            border: none;
+            color: white;
+            background: none;
+            &:hover{
+                outline: solid 1px white;
+            }
         }
     }
 }

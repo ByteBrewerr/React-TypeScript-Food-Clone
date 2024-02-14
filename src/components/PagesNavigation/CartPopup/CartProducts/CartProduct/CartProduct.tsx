@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ExtendedProduct } from "../../../../../types/productType";
 import "./cartProduct.scss";
-import { CiTrash } from "react-icons/ci";
+import { FaTrashCan } from "react-icons/fa6";
 import ProductCounter from "../../../../../shared/ProductCounter/ProductCounter";
 import useCartStore from "../../../../../stores/cartStore";
 
@@ -22,7 +22,6 @@ const CartProduct: FC<CartProductProps> = ({ product }) => {
   const decrease = () => {
     decreaseCount(product);
   };
-
   return (
     <div className="cartProduct">
       <img className="cartProductImg" src={product.img} alt="" />
@@ -32,8 +31,8 @@ const CartProduct: FC<CartProductProps> = ({ product }) => {
         <p>{product.description}</p>
       </div>
       <ProductCounter count={productCount} increase={increase} decrease={decrease} />
-      <span>{product.price * product.count} ₽</span>
-      <CiTrash className="cartProductDelete" onClick={() => deleteProduct(product)} />
+      <span className="cartProductPrice">{product.priceWithToppings * productCount} ₽</span>
+      <FaTrashCan className="cartProductDelete" onClick={() => deleteProduct(product)} />
     </div>
   );
 };
