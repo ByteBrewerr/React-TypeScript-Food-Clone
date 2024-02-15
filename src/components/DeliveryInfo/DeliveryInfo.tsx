@@ -2,6 +2,7 @@ import React from "react";
 import { FaRegClock, FaMedal, FaTruck } from "react-icons/fa";
 import { FaWallet } from "react-icons/fa6";
 import "./DeliveryInfo.scss";
+import { DELIVERY_COST, MIN_ORDER_COST, DELIVRY_TIME, FREE_DELIVERY_FROM } from "../../utils/constants/appConstants";
 
 const DeliveryInfo = () => {
   return (
@@ -9,7 +10,7 @@ const DeliveryInfo = () => {
       <div className="deliveryInfo__time">
         <FaRegClock size={30} />
         <div>
-          <h4>до 90мин.</h4>
+          <h4>до {DELIVRY_TIME}мин.</h4>
           <p>ВРЕМЯ ДОСТАВКИ</p>
         </div>
       </div>
@@ -17,7 +18,7 @@ const DeliveryInfo = () => {
       <div className="deliveryInfo__cost">
         <FaWallet size={30} />
         <div>
-          <h4>700 ₽</h4>
+          <h4>{MIN_ORDER_COST} ₽</h4>
           <p>МИН. СУММА ЗАКАЗА</p>
         </div>
       </div>
@@ -25,7 +26,7 @@ const DeliveryInfo = () => {
       <div className="deliveryInfo__delivery">
         <FaTruck size={30} />
         <div>
-          <h4>200 ₽</h4>
+          <h4>{DELIVERY_COST} ₽</h4>
           <p>СТОИМ. ДОСТАВКИ</p>
         </div>
       </div>
@@ -33,7 +34,7 @@ const DeliveryInfo = () => {
       <div className="deliveryInfo__free">
         <FaMedal size={30} />
         <div>
-          <h4>от 1000 ₽</h4>
+          <h4>от {FREE_DELIVERY_FROM} ₽</h4>
           <p>БЕСПЛ. ДОСТАВКА</p>
         </div>
       </div>

@@ -1,0 +1,50 @@
+@import '../../../../styles/variables.scss';
+
+.orderDeliveryDanger{
+    background: $button-color;
+    border-radius: 10px;
+    display: flex;
+    margin-top: 1rem;
+    padding: 0.4rem;
+    align-items: center;
+    .exclamation{
+        min-width: 40px;
+        display: flex;
+        justify-content: center;
+    }
+    p{
+        border-left: 1px solid white;
+        padding-left: 1rem;
+        font-size: 0.7em;
+    }
+}
+
+.orderInfo{
+    margin-top: 1rem;
+    div{
+        display: flex;
+        justify-content: space-between;
+    }
+    div:not(:last-child) {
+        margin-bottom: 1rem; 
+      }
+    div:last-child {
+        span {
+          color: white; 
+        }
+      }
+    span{
+        color: gray;
+        
+    }
+}
+.DoOrderBtn{
+    margin-top: 2rem;
+    background: $button-color;
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+}

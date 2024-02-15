@@ -2,6 +2,7 @@ import React, { FC, useEffect } from "react";
 import "./cartPopup.scss";
 import useCartStore from "../../../stores/cartStore";
 import CartProducts from "./CartProducts/CartProducts";
+import OrderInfo from "./OrderInfo/OrderInfo";
 
 type CartPopupProps = {
   closePopup: () => void;
@@ -23,6 +24,7 @@ const CartPopup: FC<CartPopupProps> = ({ closePopup }) => {
         <button onClick={closePopup}>X</button>
       </div>
       <CartProducts products={cartProducts} />
+      <OrderInfo />
     </div>
   );
 };

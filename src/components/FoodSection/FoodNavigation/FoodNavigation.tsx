@@ -10,10 +10,10 @@ const FoodNavigation = () => {
   const setProducts = useProductsStore((state) => state.setProducts);
   const setIsLoading = useProductsStore((state) => state.setIsLoading);
 
-  const { isLoading } = useQuery({
+  useQuery({
     queryKey: ["products", active],
     queryFn: () => {
-      setIsLoading(isLoading);
+      setIsLoading(true);
       return productService.getProductsByCategory(foodCategories[active]);
     },
     onSuccess(data) {
