@@ -1,12 +1,17 @@
 import React, { FC } from "react";
 import "./header.scss";
+import { Link } from "react-router-dom";
 
 const Header: FC = () => {
   return (
     <header className="header">
       <div className="container">
-        <span>BurgerRush</span>
-        <button>Войти</button>
+        <Link className="backToMainBtn" to="/">
+          BurgerRush
+        </Link>
+        <Link className="loginBtn" to="/login">
+          Войти
+        </Link>
       </div>
     </header>
   );

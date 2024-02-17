@@ -2,36 +2,38 @@ import React, { FC, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import "./pagesNavigation.scss";
 import { usePopUp } from "../../hooks/usePopUp";
-import ReactDOM from "react-dom";
-import CartButton from "./CartPopup/CartPopup";
+import CartPopup from "./CartPopup/CartPopup";
 import useCartStore from "../../stores/cartStore";
+import { Link } from "react-router-dom";
+
+type NavButton = {
+  text: string;
+  path: string;
+};
+
+const navButtons: NavButton[] = [
+  { text: "Главная", path: "/" },
+  { text: "Отзывы", path: "/feedback" },
+];
 
 const PagesNavigation: FC = () => {
   const [active, setActive] = useState(0);
-  const navText = ["Главная", "Акции", "Отзывы"];
   const totalPrice = useCartStore((state) => state.totalPrice);
   const { isPopUpVisible, handlePopUp } = usePopUp();
-
-  const portalContainer = document.getElementById("portal-container");
-  if (!portalContainer) {
-    alert("no portal");
-    return null;
-  }
 
   return (
     <div className="pagesNavContainer">
       <nav className="navigation">
-        {navText.map((text, index) => {
-          return (
-            <span
-              className={index === active ? "navigation__button--active" : "navigation__button"}
-              onClick={() => setActive(index)}
-              key={index}
-            >
-              {text}
-            </span>
-          );
-        })}
+        {navButtons.map((button, index) => (
+          <Link
+            key={index}
+            to={button.path}
+            className={index === active ? "navigation__button--active" : "navigation__button"}
+            onClick={() => setActive(index)}
+          >
+            {button.text}
+          </Link>
+        ))}
       </nav>
 
       <div className="relativeDivCartButton">
@@ -39,7 +41,7 @@ const PagesNavigation: FC = () => {
           <BsCart4 size={15} />
           <span>{totalPrice} ₽</span>
         </button>
-        {isPopUpVisible && <CartButton closePopup={handlePopUp} />}
+        {isPopUpVisible && <CartPopup closePopup={handlePopUp} />}
       </div>
     </div>
   );

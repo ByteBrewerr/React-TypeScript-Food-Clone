@@ -9,7 +9,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }  
+    }
+    a{
+    
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+        &:hover{
+            color: red;
+            text-decoration: underline;
+        } 
+       
+    }
 }
   
   
