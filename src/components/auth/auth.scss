@@ -1,0 +1,42 @@
+.formContainer{
+    display: flex;
+    background: white;
+    flex-direction: column;
+    max-width: 300px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 5%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    p{
+        font-size: 0.9em;
+        color: red;
+        margin-top: -1.5rem;
+    }
+    a{
+        text-decoration: none;
+        margin: auto;
+        margin-bottom: 1rem;
+        &:hover{
+            color: blue
+        }
+    }
+    .authSwitch{   
+        display: flex;      
+    }
+    & div {
+        margin-bottom: 1.25rem;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgb(22, 0, 20); /* цвет заднего фона */
+        opacity: 0.8; /* прозрачность */
+        border-radius: 8px;
+        z-index: -1;
+      }
+}

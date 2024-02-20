@@ -1,7 +1,7 @@
 import React from "react";
-import Auth from "../components/Header/Auth/Auth";
+import SignUp from "../components/auth/SignUp/SignUp";
 
 const RegisterPage = () => {
-  return <Auth formType="registration" />;
+  return <SignUp />;
 };
 export default RegisterPage;
