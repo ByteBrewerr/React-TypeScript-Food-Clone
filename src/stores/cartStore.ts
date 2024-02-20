@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { ExtendedProduct } from "../types/productType";
 import { toast } from "react-toastify";
+import notify from "../services/notificationService";
 
 interface CartStore {
   products: ExtendedProduct[];
@@ -11,14 +12,12 @@ interface CartStore {
   deleteProduct: (product: ExtendedProduct) => void;
 }
 
-const notify = () => toast.success("Товар успешно добавлен!");
-
 const useCartStore = create<CartStore>((set) => ({
   products: [],
   totalPrice: 0,
   addProduct: (product, countToAdd = 1) =>
     set((state) => {
-      notify();
+      notify("Товар успешно добавлен", "success");
       const existingProductIndex = state.products.findIndex(
         (existingProduct) =>
           existingProduct.name === product.name && JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)

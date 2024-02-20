@@ -3,13 +3,18 @@ import React, { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import "../auth.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../../firebase";
+import notify from "../../../services/notificationService";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface SignUpFormInputs {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
+  number: string;
 }
 
 const SignUp: FC = () => {
@@ -18,14 +23,41 @@ const SignUp: FC = () => {
     handleSubmit,
     getValues,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignUpFormInputs>();
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phonePattern = /^\+\d{11}$/;
 
-  const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => {
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
+    const name = data.email;
+    const password = data.password;
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    createUserWithEmailAndPassword(auth, name, password)
+      .then((user) => {
+        if (auth.currentUser) {
+          updateProfile(auth.currentUser, {
+            displayName: data.name,
+          }).then(() => navigate("/"));
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === "auth/email-already-in-use") {
+          notify("Этот email уже используется, выберите другой", "error");
+        } else {
+          notify(error.message, "error");
+        }
+      });
     reset();
   };
+
+  if (auth.currentUser) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
@@ -36,6 +68,17 @@ const SignUp: FC = () => {
         })}
       />
       {errors.name && <p>{errors.name.message}</p>}
+      <TextField
+        label="Number"
+        {...register("number", {
+          required: "Введите номер телефона",
+          pattern: {
+            value: phonePattern,
+            message: "Введите действительный номер телефона в формате +12345678900",
+          },
+        })}
+      />
+      {errors.number && <p>{errors.number.message}</p>}
       <TextField
         label="Email"
         {...register("email", {
@@ -69,7 +112,13 @@ const SignUp: FC = () => {
       />
       {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
       <Link to="/login">Уже есть аккаунт? Войти</Link>
-      <Button type="submit">ЗАРЕГИСТРИРОВАТЬСЯ</Button>
+      {isSubmitting ? (
+        <Button disabled>
+          <CircularProgress />
+        </Button>
+      ) : (
+        <Button type="submit">ЗАРЕГИСТРИРОВАТЬСЯ</Button>
+      )}
     </form>
   );
 };
