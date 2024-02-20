@@ -10,7 +10,6 @@ const OrderInfo = () => {
   const { totalPrice } = cartStore;
   const deliveryCost = totalPrice >= 1000 ? 0 : DELIVERY_COST;
   const notify = () => toast.error(`Минимальная сумма заказа ${MIN_ORDER_COST} ₽`);
-  console.log(cartStore.products);
   const handleOrder = () => {
     if (totalPrice <= MIN_ORDER_COST) notify();
   };

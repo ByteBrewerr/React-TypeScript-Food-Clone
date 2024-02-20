@@ -6,10 +6,16 @@ class ToppingsStore {
   product: Product | null = null;
   productCount: number = 1;
   pickedToppings: Topping[] = [];
-  totalPrice: number = 0;
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  get totalPrice() {
+    if (!this.product) return 0;
+
+    const toppingsPrice = this.pickedToppings.reduce((acc, topping) => acc + parseFloat(topping.price), 0);
+    return (this.product.price + toppingsPrice) * this.productCount;
   }
 
   setProduct = (product: Product) => {
@@ -40,25 +46,6 @@ class ToppingsStore {
     this.product = null;
     this.productCount = 1;
     this.pickedToppings = [];
-    this.totalPrice = 0;
-  };
-
-  calculateTotalPrice = (): number => {
-    if (this.product) {
-      const toppingsPrice = this.pickedToppings.reduce((acc, topping) => acc + parseFloat(topping.price), 0);
-
-      return (this.product.price + toppingsPrice) * this.productCount;
-    }
-
-    return 0;
-  };
-
-  updateTotalPrice = () => {
-    const totalPrice = this.calculateTotalPrice();
-
-    if (this.totalPrice !== totalPrice) {
-      this.totalPrice = totalPrice;
-    }
   };
 }
 

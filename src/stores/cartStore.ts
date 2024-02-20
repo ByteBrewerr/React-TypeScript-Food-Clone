@@ -1,6 +1,7 @@
 import { computed, makeAutoObservable } from "mobx";
 import { ExtendedProduct } from "../types/productType";
 import notify from "../services/notificationService";
+import { areArraysEqual } from "../utils/areArraysEqual";
 
 class CartStore {
   products: ExtendedProduct[] = [];
@@ -20,10 +21,10 @@ class CartStore {
   }
 
   addProduct = (product: ExtendedProduct, countToAdd: number = 1) => {
-    notify("Товар успешно добавлен", "success");
     const existingProductIndex = this.products.findIndex(
       (existingProduct) =>
-        existingProduct.name === product.name && JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
+        existingProduct.name === product.name &&
+        areArraysEqual(existingProduct.toppings, product.toppings, (a, b) => a.name.localeCompare(b.name))
     );
 
     if (existingProductIndex !== -1) {
@@ -36,11 +37,13 @@ class CartStore {
     } else {
       this.products = [...this.products, { ...product, count: countToAdd }];
     }
+    notify("Товар успешно добавлен", "success");
   };
 
   increaseProductCount = (product: ExtendedProduct) => {
     const updatedProducts = this.products.map((existingProduct) =>
-      existingProduct.name === product.name && JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
+      existingProduct.name === product.name &&
+      areArraysEqual(existingProduct.toppings, product.toppings, (a, b) => a.name.localeCompare(b.name))
         ? { ...existingProduct, count: existingProduct.count + 1 }
         : existingProduct
     );
@@ -51,7 +54,7 @@ class CartStore {
     const updatedProducts = this.products.map((existingProduct) =>
       existingProduct.name === product.name &&
       product.count > 1 &&
-      JSON.stringify(existingProduct.toppings) === JSON.stringify(product.toppings)
+      areArraysEqual(existingProduct.toppings, product.toppings, (a, b) => a.name.localeCompare(b.name))
         ? { ...existingProduct, count: existingProduct.count - 1 }
         : existingProduct
     );
@@ -61,7 +64,8 @@ class CartStore {
   deleteProduct = (product: ExtendedProduct) => {
     const updatedProducts = this.products.filter(
       (existingProduct) =>
-        existingProduct.name !== product.name || JSON.stringify(existingProduct.toppings) !== JSON.stringify(product.toppings)
+        existingProduct.name !== product.name ||
+        !areArraysEqual(existingProduct.toppings, product.toppings, (a, b) => a.name.localeCompare(b.name))
     );
     this.products = updatedProducts;
   };
