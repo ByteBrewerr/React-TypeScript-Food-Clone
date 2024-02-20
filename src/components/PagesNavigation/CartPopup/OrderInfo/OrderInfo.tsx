@@ -1,15 +1,16 @@
 import React from "react";
 import "./orderInfo.scss";
 import { FaExclamation } from "react-icons/fa";
-import useCartStore from "../../../../stores/cartStore";
 import { DELIVERY_COST, MIN_ORDER_COST } from "../../../../utils/constants/appConstants";
 import { toast } from "react-toastify";
+import cartStore from "../../../../stores/cartStore";
+import { observer } from "mobx-react-lite";
 
 const OrderInfo = () => {
-  const totalPrice = useCartStore((state) => state.totalPrice);
+  const { totalPrice } = cartStore;
   const deliveryCost = totalPrice >= 1000 ? 0 : DELIVERY_COST;
   const notify = () => toast.error(`Минимальная сумма заказа ${MIN_ORDER_COST} ₽`);
-
+  console.log(cartStore.products);
   const handleOrder = () => {
     if (totalPrice <= MIN_ORDER_COST) notify();
   };
@@ -50,4 +51,4 @@ const OrderInfo = () => {
     </>
   );
 };
-export default OrderInfo;
+export default observer(OrderInfo);

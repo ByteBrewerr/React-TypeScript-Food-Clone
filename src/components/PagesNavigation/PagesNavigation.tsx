@@ -3,8 +3,9 @@ import { BsCart4 } from "react-icons/bs";
 import "./pagesNavigation.scss";
 import { usePopUp } from "../../hooks/usePopUp";
 import CartPopup from "./CartPopup/CartPopup";
-import useCartStore from "../../stores/cartStore";
 import { Link } from "react-router-dom";
+import cartStore from "../../stores/cartStore";
+import { observer } from "mobx-react-lite";
 
 type NavButton = {
   text: string;
@@ -18,7 +19,7 @@ const navButtons: NavButton[] = [
 
 const PagesNavigation: FC = () => {
   const [active, setActive] = useState(0);
-  const totalPrice = useCartStore((state) => state.totalPrice);
+  const { totalPrice } = cartStore;
   const { isPopUpVisible, handlePopUp } = usePopUp();
 
   return (
@@ -47,4 +48,4 @@ const PagesNavigation: FC = () => {
   );
 };
 
-export default PagesNavigation;
+export default observer(PagesNavigation);

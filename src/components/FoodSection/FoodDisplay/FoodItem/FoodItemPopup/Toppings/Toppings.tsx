@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import useProductsStore from "../../../../../../stores/productsStore";
 import Topping from "./Topping/Topping";
 import "./toppings.scss";
+import productsStore from "../../../../../../stores/productsStore";
+import { observer } from "mobx-react-lite";
 
 const Toppings = () => {
-  const { toppings, setToppings } = useProductsStore((state) => ({ toppings: state.toppings, setToppings: state.setToppings }));
+  const { toppings, setToppings } = productsStore;
   useEffect(() => {
     setToppings();
   }, []);
@@ -18,4 +20,4 @@ const Toppings = () => {
     </>
   );
 };
-export default Toppings;
+export default observer(Toppings);

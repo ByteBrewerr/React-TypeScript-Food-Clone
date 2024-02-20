@@ -1,30 +1,36 @@
-import { create } from "zustand";
+import { observable, action, makeAutoObservable, runInAction } from "mobx";
 import { Product } from "../types/productType";
 
-interface ProductsStore {
-  products: Product[];
-  toppings: { name: string; price: string }[];
-  isLoading: boolean;
-  setIsLoading: (isLoading: boolean) => void;
-  setProducts: (products: Product[]) => void;
-  setToppings: () => Promise<void>;
-}
+class ProductsStore {
+  products: Product[] = [];
+  toppings: { name: string; price: string }[] = [];
+  isLoading: boolean = false;
 
-const useProductsStore = create<ProductsStore>((set) => ({
-  products: [],
-  toppings: [],
-  setToppings: async () => {
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  setIsLoading = (isLoading: boolean) => {
+    this.isLoading = isLoading;
+  };
+
+  setProducts = (products: Product[]) => {
+    this.products = products;
+  };
+
+  setToppings = async () => {
     try {
       const response = await fetch("../../public/toppings.json");
       const jsonData = await response.json();
-      set({ toppings: jsonData });
+
+      runInAction(() => {
+        this.toppings = jsonData;
+      });
     } catch (error) {
       console.error("Error loading toppings:", error);
     }
-  },
-  isLoading: false,
-  setIsLoading: (isLoading) => set({ isLoading }),
-  setProducts: (products) => set({ products }),
-}));
+  };
+}
 
-export default useProductsStore;
+const productsStore = new ProductsStore();
+export default productsStore;

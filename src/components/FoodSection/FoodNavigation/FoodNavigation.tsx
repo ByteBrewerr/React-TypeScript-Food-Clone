@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import productService from "../../../services/productService";
 import useProductsStore from "../../../stores/productsStore";
-
+import productsStore from "../../../stores/productsStore";
+import { observer } from "mobx-react-lite";
 const FoodNavigation = () => {
   const [active, setActive] = useState(0);
   const foodCategories = ["Популярное", "Бургеры", "Боксы", "Салаты", "Закуски", "Десерты", "Напитки", "Соусы"];
 
-  const setProducts = useProductsStore((state) => state.setProducts);
-  const setIsLoading = useProductsStore((state) => state.setIsLoading);
+  const { setProducts, setIsLoading } = productsStore;
 
   useQuery({
     queryKey: ["products", active],
@@ -41,4 +41,4 @@ const FoodNavigation = () => {
   );
 };
 
-export default FoodNavigation;
+export default observer(FoodNavigation);

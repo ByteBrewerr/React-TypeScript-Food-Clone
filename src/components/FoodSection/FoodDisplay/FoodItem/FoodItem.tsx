@@ -5,14 +5,14 @@ import FoodItemPopup from "./FoodItemPopup/FoodItemPopup";
 import ReactDOM from "react-dom";
 import "./foodItem.scss";
 import Overlay from "../../../../shared/modals/Overlay/Overlay";
-import useToppingsStore from "../../../../stores/toppingsStore";
-import useCartStore from "../../../../stores/cartStore";
+import toppingsStore from "../../../../stores/toppingsStore";
+import { observer } from "mobx-react-lite";
+import cartStore from "../../../../stores/cartStore";
 
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
-  const setProduct = useToppingsStore((state) => state.setProduct);
-  const resetToppingsState = useToppingsStore((state) => state.resetState);
-  const addProduct = useCartStore((state) => state.addProduct);
+  const { setProduct, resetState: resetToppingsState } = toppingsStore;
+  const { addProduct } = cartStore;
   const portalContainer = document.getElementById("portal-container");
 
   if (!portalContainer) {
@@ -66,4 +66,4 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
   );
 };
 
-export default FoodItem;
+export default observer(FoodItem);

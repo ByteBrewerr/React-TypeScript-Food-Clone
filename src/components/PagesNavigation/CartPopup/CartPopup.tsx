@@ -3,13 +3,15 @@ import "./cartPopup.scss";
 import useCartStore from "../../../stores/cartStore";
 import CartProducts from "./CartProducts/CartProducts";
 import OrderInfo from "./OrderInfo/OrderInfo";
+import cartStore from "../../../stores/cartStore";
+import { observer } from "mobx-react-lite";
 
 type CartPopupProps = {
   closePopup: () => void;
 };
 
 const CartPopup: FC<CartPopupProps> = ({ closePopup }) => {
-  const cartProducts = useCartStore((state) => state.products);
+  const { products: cartProducts } = cartStore;
 
   useLayoutEffect(() => {
     if (cartProducts.length === 0) {
@@ -28,4 +30,4 @@ const CartPopup: FC<CartPopupProps> = ({ closePopup }) => {
     </div>
   );
 };
-export default CartPopup;
+export default observer(CartPopup);

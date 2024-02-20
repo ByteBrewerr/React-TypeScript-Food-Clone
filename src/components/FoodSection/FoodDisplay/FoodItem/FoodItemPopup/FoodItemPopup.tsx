@@ -4,10 +4,10 @@ import { Product } from "../../../../../types/productType";
 import ProductCounter from "../../../../../shared/ProductCounter/ProductCounter";
 import Toppings from "./Toppings/Toppings";
 import { IoMdClose } from "react-icons/io";
-import useToppingsStore from "../../../../../stores/toppingsStore";
-import useCartStore from "../../../../../stores/cartStore";
-import { useShallow } from "zustand/react/shallow";
 import "react-toastify/dist/ReactToastify.css";
+import toppingsStore from "../../../../../stores/toppingsStore";
+import { observer } from "mobx-react-lite";
+import cartStore from "../../../../../stores/cartStore";
 
 type PopUpProps = {
   onClose: () => void;
@@ -15,27 +15,19 @@ type PopUpProps = {
 };
 
 const FoodItemPopup: FC<PopUpProps> = ({ product, onClose }) => {
-  const addProduct = useCartStore((state) => state.addProduct);
+  const { addProduct } = cartStore;
 
-  const { decreaseCount, increaseCount, productCount, toppings, totalPrice } = useToppingsStore(
-    useShallow((state) => ({
-      decreaseCount: state.decreaseCount,
-      increaseCount: state.increaseCount,
-      productCount: state.productCount,
-      toppings: state.pickedToppings,
-      totalPrice: state.totalPrice,
-    }))
-  );
+  const { decreaseCount, increaseCount, productCount, pickedToppings, totalPrice } = toppingsStore;
 
   const handleAddToCart = () => {
     let totalToppingPrice = 0;
 
-    totalToppingPrice = toppings.reduce((acc, topping) => acc + parseInt(topping.price), 0);
+    totalToppingPrice = pickedToppings.reduce((acc, topping) => acc + parseInt(topping.price), 0);
     const extendedProduct = {
       ...product,
       count: productCount,
       priceWithToppings: totalToppingPrice + product.price,
-      toppings,
+      toppings: pickedToppings,
     };
     onClose();
     addProduct(extendedProduct, productCount);
@@ -71,4 +63,4 @@ const FoodItemPopup: FC<PopUpProps> = ({ product, onClose }) => {
     </div>
   );
 };
-export default FoodItemPopup;
+export default observer(FoodItemPopup);

@@ -4,6 +4,8 @@ import "./topping.scss";
 import CustomCheckbox from "../../../../../../../shared/CustomCheckbox/CustomCheckbox";
 import useToppingsStore from "../../../../../../../stores/toppingsStore";
 import { useShallow } from "zustand/react/shallow";
+import toppingsStore from "../../../../../../../stores/toppingsStore";
+import { observer } from "mobx-react-lite";
 
 type ToppingProps = {
   name: string;
@@ -13,12 +15,7 @@ type ToppingProps = {
 const Topping: FC<ToppingProps> = ({ name, price }) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const { setTopping, removeTopping } = useToppingsStore(
-    useShallow((state) => ({
-      setTopping: state.setTopping,
-      removeTopping: state.removeTopping,
-    }))
-  );
+  const { setTopping, removeTopping } = toppingsStore;
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -42,4 +39,4 @@ const Topping: FC<ToppingProps> = ({ name, price }) => {
     </div>
   );
 };
-export default Topping;
+export default observer(Topping);

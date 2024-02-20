@@ -3,7 +3,8 @@ import { ExtendedProduct } from "../../../../../types/productType";
 import "./cartProduct.scss";
 import { FaTrashCan } from "react-icons/fa6";
 import ProductCounter from "../../../../../shared/ProductCounter/ProductCounter";
-import useCartStore from "../../../../../stores/cartStore";
+import cartStore from "../../../../../stores/cartStore";
+import { observer } from "mobx-react-lite";
 
 type CartProductProps = {
   product: ExtendedProduct;
@@ -11,9 +12,7 @@ type CartProductProps = {
 
 const CartProduct: FC<CartProductProps> = ({ product }) => {
   const productCount = product.count;
-  const increaseCount = useCartStore((state) => state.increaseProductCount);
-  const decreaseCount = useCartStore((state) => state.decreaseProductCount);
-  const deleteProduct = useCartStore((state) => state.deleteProduct);
+  const { increaseProductCount: increaseCount, decreaseProductCount: decreaseCount, deleteProduct } = cartStore;
 
   const increase = () => {
     increaseCount(product);
@@ -36,4 +35,4 @@ const CartProduct: FC<CartProductProps> = ({ product }) => {
     </div>
   );
 };
-export default CartProduct;
+export default observer(CartProduct);

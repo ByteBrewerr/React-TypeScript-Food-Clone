@@ -3,9 +3,11 @@ import FoodItem from "./FoodItem/FoodItem";
 import useProductsStore from "../../../stores/productsStore";
 import "./foodDisplay.scss";
 import { Skeleton } from "./Skeleton/Skeleton";
+import { observer } from "mobx-react-lite";
+import productsStore from "../../../stores/productsStore";
 
 const FoodDisplay = () => {
-  const { products, isLoading } = useProductsStore();
+  const { products, isLoading } = productsStore;
 
   return (
     <div className="foodDisplay">
@@ -16,4 +18,4 @@ const FoodDisplay = () => {
   );
 };
 
-export default FoodDisplay;
+export default observer(FoodDisplay);
