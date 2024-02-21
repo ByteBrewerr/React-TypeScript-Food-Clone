@@ -1,4 +1,4 @@
-import { computed, makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { ExtendedProduct } from "../types/productType";
 import notify from "../services/notificationService";
 import { areArraysEqual } from "../utils/areArraysEqual";
@@ -68,16 +68,6 @@ class CartStore {
         !areArraysEqual(existingProduct.toppings, product.toppings, (a, b) => a.name.localeCompare(b.name))
     );
     this.products = updatedProducts;
-  };
-
-  calculateTotalPrice = (): number => {
-    let totalPrice = 0;
-
-    this.products.forEach((product) => {
-      totalPrice += product.priceWithToppings * product.count;
-    });
-
-    return totalPrice;
   };
 }
 

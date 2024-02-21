@@ -1,21 +1,20 @@
-// Register.tsx
 import React, { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import "../auth.scss";
 import { Link, useNavigate, Navigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../firebase";
-import notify from "../../../services/notificationService";
 import CircularProgress from "@mui/material/CircularProgress";
+import { observer } from "mobx-react-lite";
+import { registerUser } from "../../../utils/firebase/firebaseUtils";
 
-interface SignUpFormInputs {
+export type SignUpFormInputs = {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
   number: string;
-}
+};
 
 const SignUp: FC = () => {
   const {
@@ -32,26 +31,10 @@ const SignUp: FC = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
-    const name = data.email;
-    const password = data.password;
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    createUserWithEmailAndPassword(auth, name, password)
-      .then((user) => {
-        if (auth.currentUser) {
-          updateProfile(auth.currentUser, {
-            displayName: data.name,
-          }).then(() => navigate("/"));
-        }
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        if (errorCode === "auth/email-already-in-use") {
-          notify("Этот email уже используется, выберите другой", "error");
-        } else {
-          notify(error.message, "error");
-        }
-      });
+    const success = await registerUser(data);
+    if (success) {
+      navigate("/");
+    }
     reset();
   };
 
@@ -123,4 +106,4 @@ const SignUp: FC = () => {
   );
 };
 
-export default SignUp;
+export default observer(SignUp);

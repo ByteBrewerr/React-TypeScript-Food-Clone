@@ -3,19 +3,37 @@ import React, { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import "../auth.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import notify from "../../../services/notificationService";
+import { observer } from "mobx-react-lite";
+import userStore from "../../../stores/userStore";
+import { getDatabase, ref, onValue } from "firebase/database";
+import CircularProgress from "@mui/material/CircularProgress";
+import { loginUser } from "../../../utils/firebase/firebaseUtils";
 
-type LoginFormInputs = {
+export type LoginFormInputs = {
   email: string;
   password: string;
 };
 
 const Login: FC = () => {
-  const { register, handleSubmit } = useForm<LoginFormInputs>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<LoginFormInputs>();
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    // Ваша логика для входа
-    console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    const success = await loginUser(data);
+    if (success) {
+      navigate("/");
+    }
+    reset();
   };
 
   return (
@@ -24,10 +42,10 @@ const Login: FC = () => {
       <TextField label="Password" type="password" {...register("password")} />
       <div className="authSwitch">
         <Link to="/register">Еще нет аккаунта? Зарегистрироваться</Link>
-        <Button type="submit">ВОЙТИ</Button>
+        <Button type="submit">{isSubmitting ? <CircularProgress /> : "ВОЙТИ"}</Button>
       </div>
     </form>
   );
 };
 
-export default Login;
+export default observer(Login);
