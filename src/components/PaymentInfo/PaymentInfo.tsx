@@ -3,7 +3,7 @@ import "./paymentInfo.scss";
 
 const PaymentInfo: FC = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <h4>Информация об оплате</h4>
       <div className="paymentInfo">
         <h3>Наличный расчёт</h3>
@@ -12,7 +12,7 @@ const PaymentInfo: FC = () => {
           сумму, с которой Вам необходима сдача.
         </p>
       </div>
-    </div>
+    </footer>
   );
 };
 

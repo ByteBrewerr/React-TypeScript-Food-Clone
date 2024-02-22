@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import productService from "../../../services/productService";
-import useProductsStore from "../../../stores/productsStore";
 import productsStore from "../../../stores/productsStore";
 import { observer } from "mobx-react-lite";
 const FoodNavigation = () => {

@@ -1,17 +1,17 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
-import { auth } from "../../firebase";
-import notify from "../../services/notificationService";
-import userStore from "../../stores/userStore";
-import { SignUpFormInputs } from "../../components/auth/SignUp/SignUp";
-import { LoginFormInputs } from "../../components/auth/Login/Login";
+import { LoginFormInputs } from "../components/auth/Login/Login";
+import { SignUpFormInputs } from "../components/auth/SignUp/SignUp";
+import { auth } from "../firebase";
+import userStore from "../stores/userStore";
+import sleep from "../utils/sleep";
+import notify from "../utils/notify";
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const db = getDatabase();
 
 const alertError = (error: any) => {
   const errorCode: string = error.code;
-  const errorMessage = errorCode.slice(4);
+  const errorMessage = errorCode.slice(5);
   notify(errorMessage, "error");
 };
 

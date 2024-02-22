@@ -6,7 +6,7 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import CircularProgress from "@mui/material/CircularProgress";
 import { observer } from "mobx-react-lite";
-import { registerUser } from "../../../utils/firebase/firebaseUtils";
+import { registerUser } from "../../../services/authService";
 
 export type SignUpFormInputs = {
   name: string;

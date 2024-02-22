@@ -2,8 +2,6 @@
 import React, { FC, useState } from "react";
 import "./topping.scss";
 import CustomCheckbox from "../../../../../../../shared/CustomCheckbox/CustomCheckbox";
-import useToppingsStore from "../../../../../../../stores/toppingsStore";
-import { useShallow } from "zustand/react/shallow";
 import toppingsStore from "../../../../../../../stores/toppingsStore";
 import { observer } from "mobx-react-lite";
 

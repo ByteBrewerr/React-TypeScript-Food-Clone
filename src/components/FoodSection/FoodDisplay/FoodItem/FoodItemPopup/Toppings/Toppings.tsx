@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import useProductsStore from "../../../../../../stores/productsStore";
 import Topping from "./Topping/Topping";
 import "./toppings.scss";
 import productsStore from "../../../../../../stores/productsStore";

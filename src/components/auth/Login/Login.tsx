@@ -4,14 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import "../auth.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import notify from "../../../services/notificationService";
 import { observer } from "mobx-react-lite";
-import userStore from "../../../stores/userStore";
-import { getDatabase, ref, onValue } from "firebase/database";
 import CircularProgress from "@mui/material/CircularProgress";
-import { loginUser } from "../../../utils/firebase/firebaseUtils";
+import { loginUser } from "../../../services/authService";
 
 export type LoginFormInputs = {
   email: string;

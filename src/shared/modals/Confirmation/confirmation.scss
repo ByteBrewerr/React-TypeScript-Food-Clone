@@ -1,0 +1,22 @@
+@import '../../../styles/variables.scss';
+.confirmation{
+    background-color: $primary-color;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button{
+        border: none;
+        background-color: $button-color;
+        color: white;
+        border-radius: 10px;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+        &:hover{
+            background-color: $hover-color;
+        }
+    }
+}

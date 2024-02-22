@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useLayoutEffect } from "react";
+import React, { FC, useLayoutEffect } from "react";
 import "./cartPopup.scss";
-import useCartStore from "../../../stores/cartStore";
 import CartProducts from "./CartProducts/CartProducts";
 import OrderInfo from "./OrderInfo/OrderInfo";
 import cartStore from "../../../stores/cartStore";

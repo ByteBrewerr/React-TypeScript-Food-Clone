@@ -3,7 +3,9 @@
     display: flex;
     justify-content: space-between;
    
-    
+    a{
+        text-decoration: none;
+    }
     .cartButton{
         background: $button-color;
         border: 0;

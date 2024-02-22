@@ -1,6 +1,5 @@
 import React from "react";
 import FoodItem from "./FoodItem/FoodItem";
-import useProductsStore from "../../../stores/productsStore";
 import "./foodDisplay.scss";
 import { Skeleton } from "./Skeleton/Skeleton";
 import { observer } from "mobx-react-lite";

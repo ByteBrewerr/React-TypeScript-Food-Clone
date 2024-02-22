@@ -1,7 +1,8 @@
 import { makeAutoObservable } from "mobx";
 import { ExtendedProduct } from "../types/productType";
-import notify from "../services/notificationService";
+
 import { areArraysEqual } from "../utils/areArraysEqual";
+import notify from "../utils/notify";
 
 class CartStore {
   products: ExtendedProduct[] = [];

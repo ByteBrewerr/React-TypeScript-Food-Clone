@@ -58,8 +58,12 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<Overlay handlePopup={handleCloseToppings} />, portalContainer)}
-          {ReactDOM.createPortal(<FoodItemPopup onClose={handleCloseToppings} product={product} />, portalContainer)}
+          {ReactDOM.createPortal(
+            <Overlay handlePopup={handleCloseToppings}>
+              <FoodItemPopup onClose={handleCloseToppings} product={product} />
+            </Overlay>,
+            portalContainer
+          )}
         </>
       )}
     </>

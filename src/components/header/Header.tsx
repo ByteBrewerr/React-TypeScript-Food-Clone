@@ -17,7 +17,7 @@ const Header: FC = () => {
 
   const headerUserRender = () => {
     if (isLoadigUser) return <CircularProgress />;
-    if (name) return <p>{name}</p>;
+    if (name) return <Link to="/profile/personalData">{name}</Link>;
     return (
       <Link className="loginBtn" to="/login">
         Войти

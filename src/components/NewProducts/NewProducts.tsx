@@ -23,8 +23,12 @@ const NewProducts: FC = () => {
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(<Overlay handlePopup={handlePopUp} />, portalContainer)}
-          {ReactDOM.createPortal(<NewProductsPopup onClose={handlePopUp} />, portalContainer)}
+          {ReactDOM.createPortal(
+            <Overlay handlePopup={handlePopUp}>
+              <NewProductsPopup onClose={handlePopUp} />
+            </Overlay>,
+            portalContainer
+          )}
         </>
       )}
     </div>
