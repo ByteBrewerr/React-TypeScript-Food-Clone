@@ -1,27 +1,23 @@
-import { query, collection, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { getDatabase, ref, onValue } from "firebase/database";
 import { Product } from "../types/productType";
-
-const categoryToQueryMap: Record<string, any> = {
-  Популярное: where("isPopular", "==", true),
-  Бургеры: where("type", "==", "Бургеры"),
-  Боксы: where("type", "==", "Боксы"),
-  Салаты: where("type", "==", "Салаты"),
-  Закуски: where("type", "==", "Закуски"),
-  Десерты: where("type", "==", "Десерты"),
-  Напитки: where("type", "==", "Напитки"),
-  Соусы: where("type", "==", "Соусы"),
-};
 
 const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
-    let q = query(collection(db, "products"));
-    if (categoryToQueryMap.hasOwnProperty(category)) {
-      q = query(collection(db, "products"), categoryToQueryMap[category]);
-    }
+    return new Promise((resolve, reject) => {
+      const db = getDatabase();
+      const productsRef = ref(db, "/products/" + category);
 
-    const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => doc.data()) as Product[];
+      onValue(
+        productsRef,
+        (snapshot) => {
+          const productsData = snapshot.val();
+          resolve(productsData);
+        },
+        {
+          onlyOnce: true,
+        }
+      );
+    });
   },
 };
 

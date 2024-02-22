@@ -3,7 +3,7 @@ import "./confirmation.scss";
 
 type ConfirmationProps = {
   text: string;
-  onClick: (isExit: boolean) => void;
+  onClick: (isYes: boolean) => void;
 };
 
 const Confirmation: FC<ConfirmationProps> = ({ text, onClick }) => {

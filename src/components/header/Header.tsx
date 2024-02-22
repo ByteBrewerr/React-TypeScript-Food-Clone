@@ -1,23 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { signOut } from "firebase/auth";
 import userStore from "../../stores/userStore";
-import { auth } from "../../firebase";
 import { CircularProgress } from "@mui/material";
 
 const Header: FC = () => {
-  const { isLoadigUser, removeUser, name } = userStore;
-
-  const handleSignOut = async () => {
-    await signOut(auth);
-    removeUser();
-  };
+  const { isLoadingUser, name } = userStore;
 
   const headerUserRender = () => {
-    if (isLoadigUser) return <CircularProgress />;
-    if (name) return <Link to="/profile/personalData">{name}</Link>;
+    const isAuth = !!name;
+    if (isLoadingUser) return <CircularProgress />;
+    if (isAuth) return <Link to="/profile/personalData">{name}</Link>;
     return (
       <Link className="loginBtn" to="/login">
         Войти
@@ -31,7 +25,6 @@ const Header: FC = () => {
         <Link className="backToMainBtn" to="/">
           BurgerRush
         </Link>
-        <button onClick={() => handleSignOut()}>signout</button>
         {headerUserRender()}
       </div>
     </header>

@@ -5,7 +5,7 @@ import productsStore from "../../../stores/productsStore";
 import { observer } from "mobx-react-lite";
 const FoodNavigation = () => {
   const [active, setActive] = useState(0);
-  const foodCategories = ["Популярное", "Бургеры", "Боксы", "Салаты", "Закуски", "Десерты", "Напитки", "Соусы"];
+  const foodCategories = ["popular", "burgers", "boxes", "salads", "snacks", "desserts", "drinks", "sauces"];
 
   const { setProducts, setIsLoading } = productsStore;
 

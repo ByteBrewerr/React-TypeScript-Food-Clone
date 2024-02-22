@@ -8,7 +8,7 @@ class UserStore {
   number: string = "";
   name: string = "";
   uid: string = "";
-  isLoadigUser = false;
+  isLoadingUser = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -26,7 +26,7 @@ class UserStore {
     });
   }
   setIsLoading = (value: boolean) => {
-    this.isLoadigUser = value;
+    this.isLoadingUser = value;
   };
   setUser = (user: User) => {
     this.email = user.email;

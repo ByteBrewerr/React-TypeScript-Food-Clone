@@ -3,10 +3,11 @@ import React, { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import "../auth.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import CircularProgress from "@mui/material/CircularProgress";
 import { loginUser } from "../../../services/authService";
+import { auth } from "../../../firebase";
 
 export type LoginFormInputs = {
   email: string;
@@ -30,6 +31,10 @@ const Login: FC = () => {
     }
     reset();
   };
+
+  if (auth.currentUser) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
