@@ -42,7 +42,11 @@ const PagesNavigation: FC = () => {
           <BsCart4 size={15} />
           <span>{totalPrice} ₽</span>
         </button>
-        {isPopUpVisible && <CartPopup closePopup={handlePopUp} />}
+        {isPopUpVisible && (
+          <div className="a">
+            <CartPopup closePopup={handlePopUp} />
+          </div>
+        )}
       </div>
     </div>
   );

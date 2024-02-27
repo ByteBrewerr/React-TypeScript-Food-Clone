@@ -5,15 +5,16 @@ import productsStore from "../../../stores/productsStore";
 import { observer } from "mobx-react-lite";
 const FoodNavigation = () => {
   const [active, setActive] = useState(0);
-  const foodCategories = ["popular", "burgers", "boxes", "salads", "snacks", "desserts", "drinks", "sauces"];
+  const foodCategoriesEng = ["popular", "burgers", "boxes", "salads", "snacks", "desserts", "drinks", "sauces"];
+  const foodCategoriesRus = ["Популярное", "Бургеры", "Боксы", "Салаты", "Закуски", "Десерты", "Напитки", "Соусы"];
 
   const { setProducts, setIsLoading } = productsStore;
 
-  useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["products", active],
     queryFn: () => {
-      setIsLoading(true);
-      return productService.getProductsByCategory(foodCategories[active]);
+      setIsLoading(isLoading);
+      return productService.getProductsByCategory(foodCategoriesEng[active]);
     },
     onSuccess(data) {
       setProducts(data || []);
@@ -25,7 +26,7 @@ const FoodNavigation = () => {
 
   return (
     <nav className="navigation">
-      {foodCategories.map((category, index) => (
+      {foodCategoriesRus.map((category, index) => (
         <button
           className={index === active ? "navigation__button--active" : "navigation__button"}
           onClick={() => {

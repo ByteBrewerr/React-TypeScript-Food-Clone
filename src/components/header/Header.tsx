@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import userStore from "../../stores/userStore";
 import { CircularProgress } from "@mui/material";
+import { FaUser } from "react-icons/fa";
 
 const Header: FC = () => {
   const { isLoadingUser, name } = userStore;
@@ -11,9 +12,15 @@ const Header: FC = () => {
   const headerUserRender = () => {
     const isAuth = !!name;
     if (isLoadingUser) return <CircularProgress />;
-    if (isAuth) return <Link to="/profile/personalData">{name}</Link>;
+    if (isAuth)
+      return (
+        <Link className="navigation__button" to="/profile/personalData">
+          <FaUser style={{ marginRight: "8px" }} />
+          {name}
+        </Link>
+      );
     return (
-      <Link className="loginBtn" to="/login">
+      <Link className="loginBtn navigation__button" to="/login">
         Войти
       </Link>
     );
@@ -22,7 +29,7 @@ const Header: FC = () => {
   return (
     <header className="header">
       <div className="container">
-        <Link className="backToMainBtn" to="/">
+        <Link className="backToMainBtn navigation__button" to="/">
           BurgerRush
         </Link>
         {headerUserRender()}

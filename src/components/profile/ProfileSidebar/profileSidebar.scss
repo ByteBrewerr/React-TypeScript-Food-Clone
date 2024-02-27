@@ -5,6 +5,8 @@
     border-radius: 10px;
     padding: 1rem;
     font-size: 1.1em;
+    margin-right: 2rem;
+    width: auto;
     h3{
         margin: 0;
     }
@@ -22,6 +24,7 @@
     }
     a{
         text-decoration: none;
+        white-space: nowrap; 
     }
     button{
         cursor: pointer;

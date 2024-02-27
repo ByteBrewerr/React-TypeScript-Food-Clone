@@ -1,0 +1,31 @@
+@import '../../../../styles/variables.scss';
+.infoChanger{
+    background: $primary-color;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .form-group{
+        margin-top: 0.5rem;
+    }
+   
+    button{
+        background-color: $button-color;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 0.5rem;
+        cursor: pointer;
+        margin-top: 1.5rem;
+        font-weight: bold;
+        &:hover{
+            background-color: $hover-color;
+        }
+    }
+}
+.infoChangerErrors{
+    color: red;
+}

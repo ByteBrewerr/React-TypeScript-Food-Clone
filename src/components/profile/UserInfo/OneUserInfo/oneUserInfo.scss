@@ -1,0 +1,27 @@
+.userContent{
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid gray;
+    border-radius: 0%;
+
+    .userInfo{
+        padding: 0;
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        label{
+            color: rgb(158, 156, 156);
+            margin-bottom: 0.2rem;
+        };
+
+        input{
+            color:white;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+        }
+    }
+}

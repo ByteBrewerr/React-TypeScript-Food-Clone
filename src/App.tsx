@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<ProfilePage />}>
-          <Route index path="personalData" element={<UserInfo />} />
+          <Route path="personalData" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrderHistory />} />
         </Route>
       </Routes>

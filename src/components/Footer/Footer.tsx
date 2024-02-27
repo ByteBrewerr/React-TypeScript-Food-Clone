@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import "./paymentInfo.scss";
+import "./footer.scss";
 
-const PaymentInfo: FC = () => {
+const Footer: FC = () => {
   return (
     <footer className="footer">
       <h4>Информация об оплате</h4>
@@ -11,9 +11,12 @@ const PaymentInfo: FC = () => {
           Оплата производится наличными курьеру при доставке заказа или самовывозом из точки продаж. При оформлении заказа укажите
           сумму, с которой Вам необходима сдача.
         </p>
+        <br />
+        <h3>Картой</h3>
+        <p>Оплата производится банковской картой курьеру при доставке заказа или при самовывозе из точки продаж.</p>
       </div>
     </footer>
   );
 };
 
-export default PaymentInfo;
+export default Footer;

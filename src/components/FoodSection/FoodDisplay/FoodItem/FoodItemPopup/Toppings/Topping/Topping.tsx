@@ -4,6 +4,8 @@ import "./topping.scss";
 import CustomCheckbox from "../../../../../../../shared/CustomCheckbox/CustomCheckbox";
 import toppingsStore from "../../../../../../../stores/toppingsStore";
 import { observer } from "mobx-react-lite";
+import Checkbox from "@mui/material/Checkbox";
+import { red } from "@mui/material/colors";
 
 type ToppingProps = {
   name: string;
@@ -33,7 +35,17 @@ const Topping: FC<ToppingProps> = ({ name, price }) => {
         <p className="toppingName">{name}</p>
         <p className="toppingPrice">{price} ₽</p>
       </div>
-      <CustomCheckbox isChecked={isChecked} onCheckboxChange={handleCheckboxChange} />
+      <Checkbox
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+        sx={{
+          padding: 0,
+          color: red[900],
+          "&.Mui-checked": {
+            color: red[900],
+          },
+        }}
+      />
     </div>
   );
 };
