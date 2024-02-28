@@ -3,7 +3,6 @@ import "./oneUserInfo.scss";
 import { observer } from "mobx-react-lite";
 
 type OneUserInfoProps = {
-  canChange?: boolean;
   label: string;
   info?: string;
   icon: ReactNode;

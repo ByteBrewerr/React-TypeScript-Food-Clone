@@ -8,6 +8,18 @@
     border-radius: 15px;
     font-size: 0.7rem;
     margin-bottom: 1.5rem;
+    position: relative;
+
+    &FavouritesBtn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: none;
+        border: none;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        
+    }
 
     img {
         width: 100%;

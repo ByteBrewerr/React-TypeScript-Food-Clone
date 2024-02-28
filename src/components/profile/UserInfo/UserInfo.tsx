@@ -10,6 +10,7 @@ import Overlay from "../../../shared/modals/Overlay/Overlay";
 
 const UserInfo = () => {
   const userData = useUserData();
+
   const { isPopUpVisible, handlePopUp } = usePopUp();
   const portalContainer = document.getElementById("portal-container");
 
