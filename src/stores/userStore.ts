@@ -22,9 +22,12 @@ class UserStore {
       } else {
         this.removeUser();
       }
-
       this.setIsLoading(false);
     });
+  }
+
+  public get isAuth(): boolean {
+    return !!this.email;
   }
 
   setIsLoading = (value: boolean) => {

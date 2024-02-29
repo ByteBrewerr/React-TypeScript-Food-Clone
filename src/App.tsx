@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import UserInfo from "./components/profile/UserInfo/UserInfo";
 import OrderHistory from "./components/profile/OrderHistory/OrderHistory";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="personalData" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrderHistory />} />
         </Route>
+        <Route path="/checkout" element={<OrderPage />} />
       </Routes>
     </>
   );

@@ -5,13 +5,18 @@ import { DELIVERY_COST, MIN_ORDER_COST } from "../../../../utils/constants/appCo
 import cartStore from "../../../../stores/cartStore";
 import { observer } from "mobx-react-lite";
 import notify from "../../../../utils/notify";
+import { useNavigate } from "react-router";
 
 const OrderInfo = () => {
   const { totalPrice } = cartStore;
   const deliveryCost = totalPrice >= 1000 ? 0 : DELIVERY_COST;
-
+  const navigate = useNavigate();
   const handleOrder = () => {
-    if (totalPrice <= MIN_ORDER_COST) notify(`Минимальная сумма заказа ${MIN_ORDER_COST} ₽`, "error");
+    if (totalPrice <= MIN_ORDER_COST) {
+      notify(`Минимальная сумма заказа ${MIN_ORDER_COST} ₽`, "error");
+      return;
+    }
+    navigate("/checkout");
   };
 
   return (

@@ -1,0 +1,25 @@
+@import '../../../styles/variables.scss';
+
+.contacts{
+    background-color: $primary-color;
+    padding: 1rem;
+    border-radius: 10px;
+
+    h2{
+        margin: 0;
+    }
+
+    &Info{
+        :not(:last-child){
+          margin-top: 1rem;  
+        }
+    }
+}
+.select{
+    background: transparent;
+    border: none; 
+    color:white;
+    option{
+        color:black
+    }
+}

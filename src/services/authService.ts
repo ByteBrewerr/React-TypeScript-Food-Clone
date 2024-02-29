@@ -30,7 +30,7 @@ export const registerUser = async (data: SignUpFormInputs) => {
         name: data.name,
         number: data.number,
         uid: user.uid,
-        favouriteProducts: [0],
+        favouriteProducts: [],
       });
 
       userStore.setUser({ email: data.email, name: data.name, number: data.number, uid: user.uid });

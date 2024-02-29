@@ -12,10 +12,14 @@
         flex-direction: column;
         width: 100%;
 
-        label{
+        .inputLabel{
             color: rgb(158, 156, 156);
             margin-bottom: 0.2rem;
-        };
+        }
+        .inputLabel--required{
+            color: red;
+            margin-bottom: 0.2rem;
+        }
 
         input{
             color:white;

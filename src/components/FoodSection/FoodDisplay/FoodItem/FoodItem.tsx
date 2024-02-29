@@ -10,10 +10,12 @@ import { observer } from "mobx-react-lite";
 import cartStore from "../../../../stores/cartStore";
 import { MdFavorite } from "react-icons/md";
 import useFavoriteProduct from "../../../../hooks/useFavoriteProduct";
+import userStore from "../../../../stores/userStore";
 
 const FoodItem: FC<{ product: Product }> = ({ product }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
   const { setProduct, resetState: resetToppingsState } = toppingsStore;
+  const { isAuth } = userStore;
   const { addProduct } = cartStore;
 
   const { isFavourite, handleFavourites } = useFavoriteProduct(product);
@@ -43,9 +45,12 @@ const FoodItem: FC<{ product: Product }> = ({ product }) => {
   return (
     <>
       <div className="foodItem">
-        <button className="foodItemFavouritesBtn" onClick={handleFavourites}>
-          <MdFavorite size={30} color={`${isFavourite ? "#ff0000" : "#800000"}`} />
-        </button>
+        {isAuth && (
+          <button className="foodItemFavouritesBtn" onClick={handleFavourites}>
+            <MdFavorite size={30} color={`${isFavourite ? "#ff0000" : "#800000"}`} />
+          </button>
+        )}
+
         <img src={product.img} alt="foodImage" />
 
         <div className="foodItem__info">
