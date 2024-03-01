@@ -9,7 +9,7 @@ type OneUserInfoProps = {
   disabled?: boolean;
   onChange?: (label: string, value: string) => void;
   required?: boolean;
-  select?: (value: string) => JSX.Element;
+  select?: () => JSX.Element;
 };
 
 const OneUserInfo: FC<OneUserInfoProps> = ({ label, info, icon, onChange, required = false, disabled = true, select }) => {
@@ -19,7 +19,7 @@ const OneUserInfo: FC<OneUserInfoProps> = ({ label, info, icon, onChange, requir
   };
 
   const renderSelect = () => {
-    return select ? select(info) : null;
+    return select ? select() : null;
   };
 
   const renderInput = () => {

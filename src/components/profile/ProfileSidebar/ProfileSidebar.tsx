@@ -8,15 +8,16 @@ import { usePopUp } from "../../../hooks/usePopUp";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase";
 
+const textWithPath = [
+  { path: "personalData", text: "Личные данные" },
+  { path: "orderHistory", text: "История покупок" },
+];
+
 const ProfileSidebar = () => {
   const [activeId, setActiveId] = useState(0);
   const { isPopUpVisible, handlePopUp } = usePopUp();
 
   const navigate = useNavigate();
-  const textWithPath = [
-    { path: "personalData", text: "Личные данные" },
-    { path: "orderHistory", text: "История покупок" },
-  ];
 
   const handleExit = async (isExit: boolean) => {
     if (isExit) {
