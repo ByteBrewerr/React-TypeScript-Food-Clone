@@ -15,10 +15,11 @@ import { useNavigate } from "react-router";
 import { OrderType, Payment } from "../../../types/orderType";
 import cartStore from "../../../stores/cartStore";
 import getFormattedTime from "../../../utils/getFormattedTime";
+import { MIN_ORDER_COST } from "../../../utils/constants/appConstants";
 
 const ContactInfo = () => {
   const { name, number, uid } = userStore;
-  const { products } = cartStore;
+  const { products, totalPrice } = cartStore;
 
   const [formData, setFormData] = useState<Record<string, string>[]>([]);
   const [submitting, setSubmitting] = useState(false);
@@ -81,10 +82,9 @@ const ContactInfo = () => {
 
     const newOrder: OrderType = {
       number: orderNumber! + 1,
-      status: "pending",
       address: { street, house },
       contacts: { name, number },
-      date: getFormattedTime().time,
+      date: `${getFormattedTime().day}, ${getFormattedTime().time}`,
       payment,
       products,
     };
@@ -131,13 +131,19 @@ const ContactInfo = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (totalPrice < MIN_ORDER_COST) {
+      notify("Минимальная цена заказа 700₽", "error");
+      return;
+    }
+
     if (validateForm()) {
       setSubmitting(true);
 
       await sleep(1000);
       await createOrder();
 
-      navigate("/profile/orderHistory");
+      navigate("/");
 
       setSubmitting(false);
     }

@@ -1,4 +1,4 @@
-import { observable, action, makeAutoObservable, runInAction, get } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { Product } from "../types/productType";
 import { getDatabase, onValue, ref, update } from "firebase/database";
 import notify from "../utils/notify";

@@ -12,7 +12,7 @@ const OrderInfo = () => {
   const deliveryCost = totalPrice >= 1000 ? 0 : DELIVERY_COST;
   const navigate = useNavigate();
   const handleOrder = () => {
-    if (totalPrice <= MIN_ORDER_COST) {
+    if (totalPrice < MIN_ORDER_COST) {
       notify(`Минимальная сумма заказа ${MIN_ORDER_COST} ₽`, "error");
       return;
     }

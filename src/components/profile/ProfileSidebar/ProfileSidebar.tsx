@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./profileSidebar.scss";
 import Confirmation from "../../../shared/modals/Confirmation/Confirmation";
 import ReactDOM from "react-dom";
@@ -10,14 +10,23 @@ import { auth } from "../../../firebase";
 
 const textWithPath = [
   { path: "personalData", text: "Личные данные" },
-  { path: "orderHistory", text: "История покупок" },
+  { path: "orderHistory", text: "История заказов" },
 ];
 
 const ProfileSidebar = () => {
-  const [activeId, setActiveId] = useState(0);
   const { isPopUpVisible, handlePopUp } = usePopUp();
-
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [activeId, setActiveId] = useState(() => getId());
+
+  function getId() {
+    const pathSegments = location.pathname.split("/");
+    const lastPathSegment = pathSegments[pathSegments.length - 1];
+    const newActiveId = textWithPath.findIndex((el) => el.path === lastPathSegment);
+
+    return newActiveId !== -1 ? newActiveId : 0;
+  }
 
   const handleExit = async (isExit: boolean) => {
     if (isExit) {

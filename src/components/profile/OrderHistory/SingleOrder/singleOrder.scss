@@ -1,0 +1,41 @@
+@import '../../../../styles/variables.scss';
+
+.singleOrder {
+  background-color: $primary-color;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  width: calc(33% - 0.5rem);
+  box-sizing: border-box;
+
+  > :not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: $button-color;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 100%;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+}
+
+@media (max-width: 1158px) {
+  .singleOrder {
+    width: calc(50% - 0.5rem); 
+  }
+}
+
+@media (max-width: 958px) {
+    .singleOrder {
+      width: calc(100%); 
+    }
+  }

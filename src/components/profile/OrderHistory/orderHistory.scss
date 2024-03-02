@@ -1,0 +1,11 @@
+.orderHistory{
+    width: 100%;
+    h1{
+        margin: 0px;
+    }
+    &Content{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem
+    }
+}

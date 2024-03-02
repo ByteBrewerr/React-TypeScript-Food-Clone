@@ -2,7 +2,6 @@ import { Product } from "./productType";
 
 export type OrderType = {
   number: number;
-  status: "pending" | "fulfilled";
   date: string;
   address: Address;
   payment: "Картой" | "Наличными";

@@ -7,7 +7,7 @@
   background-color: $primary-color;
   border-radius: 10px;
   margin-top: 1rem;
-  font-size: small;
+  height: 5rem;
 
   div {
     p:last-child {
@@ -22,5 +22,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    font-size: clamp(0.6em, 1.5vw, 0.8em);
   }
 }

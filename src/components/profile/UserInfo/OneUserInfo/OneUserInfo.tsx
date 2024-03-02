@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 type OneUserInfoProps = {
   label: string;
   info: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   disabled?: boolean;
   onChange?: (label: string, value: string) => void;
   required?: boolean;

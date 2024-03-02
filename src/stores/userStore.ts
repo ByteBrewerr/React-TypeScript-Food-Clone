@@ -19,8 +19,10 @@ class UserStore {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         await this.fetchUserData(user.uid);
+        localStorage.setItem("uid", user.uid);
       } else {
         this.removeUser();
+        localStorage.removeItem("uid");
       }
       this.setIsLoading(false);
     });
@@ -103,4 +105,5 @@ class UserStore {
 }
 
 const userStore = new UserStore();
+
 export default userStore;
