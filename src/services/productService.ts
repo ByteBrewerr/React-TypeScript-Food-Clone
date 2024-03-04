@@ -3,7 +3,7 @@ import { Product } from "../types/productType";
 
 const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const db = getDatabase();
       const productsRef = ref(db, "/products/" + category);
 

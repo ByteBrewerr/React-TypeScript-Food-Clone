@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./contactInfo.scss";
-import OneUserInfo from "../../profile/UserInfo/OneUserInfo/OneUserInfo";
+import OneUserInfo from "../../../shared/OneUserInfo/OneUserInfo";
 import { FaPhone, FaUser } from "react-icons/fa6";
 import { MdAttachMoney } from "react-icons/md";
 import { FaStreetView } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { observer } from "mobx-react-lite";
 import Footer from "../../Footer/Footer";
 import sleep from "../../../utils/sleep";
 import CircularProgress from "@mui/material/CircularProgress";
-import { get, getDatabase, onValue, ref, runTransaction, update } from "firebase/database";
+import { get, getDatabase, onValue, push, ref, runTransaction, set, update } from "firebase/database";
 import notify from "../../../utils/notify";
 import { useNavigate } from "react-router";
 import { OrderType, Payment } from "../../../types/orderType";
@@ -73,7 +73,8 @@ const ContactInfo = () => {
 
   const createOrder = async () => {
     const database = getDatabase();
-    const userRef = ref(database, "users/" + uid);
+    const ordersRef = ref(database, `users/${uid}/orders/${orderNumber}`);
+
     const street = formData.find((item) => item.label === "Улица")?.info ?? "";
     const house = formData.find((item) => item.label === "Дом")?.info ?? "";
     const payment = formData.find((item) => item.label === "Оплата")?.info as Payment;
@@ -88,20 +89,9 @@ const ContactInfo = () => {
       payment,
       products,
     };
-
     try {
-      onValue(
-        userRef,
-        async (snapshot) => {
-          const data = snapshot.val();
-          const orders = data.orders || [];
-          await update(userRef, { orders: [...orders, newOrder] });
-          await updateOrderNumber();
-        },
-        {
-          onlyOnce: true,
-        }
-      );
+      await update(ordersRef, { ...newOrder });
+      await updateOrderNumber();
     } catch (error) {
       notify("Ошибка", "error");
     }
@@ -143,7 +133,7 @@ const ContactInfo = () => {
       await sleep(1000);
       await createOrder();
 
-      navigate("/");
+      navigate("/profile/orderHistory");
 
       setSubmitting(false);
     }

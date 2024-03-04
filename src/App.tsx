@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import UserInfo from "./components/profile/UserInfo/UserInfo";
 import OrderHistory from "./components/profile/OrderHistory/OrderHistory";
 import OrderPage from "./pages/OrderPage";
+import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />}>
           <Route path="personalData" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrderHistory />} />
+          <Route path="orderHistory/:orderNumber" element={<OrderDetailsPage />} />
         </Route>
         <Route path="/checkout" element={<OrderPage />} />
       </Routes>

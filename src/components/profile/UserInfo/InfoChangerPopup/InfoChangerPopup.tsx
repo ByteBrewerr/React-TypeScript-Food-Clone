@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, useEffect, FC } from "react";
 import "./infoChangerPopup.scss";
 import { useUserData } from "../../../../hooks/useUserData";
-import OneUserInfo from "../OneUserInfo/OneUserInfo";
+import OneUserInfo from "../../../../shared/OneUserInfo/OneUserInfo";
 import { observer } from "mobx-react-lite";
 import userStore from "../../../../stores/userStore";
 

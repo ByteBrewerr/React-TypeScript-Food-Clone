@@ -1,20 +1,39 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { OrderType } from "../types/orderType";
+import { getDatabase, onValue, ref } from "firebase/database";
 
 class OrderStore {
   orders: OrderType[] = [];
-  loading = false;
+  isLoading = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setOrders = (orders: OrderType[]) => {
-    this.orders = orders;
+  fetchOrders = async (uid: string) => {
+    this.isLoading = true;
+    try {
+      const database = getDatabase();
+      const userOrdersRef = ref(database, `users/${uid}/orders`);
+      onValue(userOrdersRef, async (snapshot) => {
+        const data = await snapshot.val();
+        if (data) {
+          const arrayData = Object.values(data) as OrderType[];
+          runInAction(() => {
+            this.orders = arrayData;
+            this.isLoading = false;
+          });
+        } else {
+          this.isLoading = false;
+        }
+      });
+    } catch (error) {
+      console.log("Ошибка загрузки истории заказов", error);
+    }
   };
 
   setLoading = (loading: boolean) => {
-    this.loading = loading;
+    this.isLoading = loading;
   };
 }
 

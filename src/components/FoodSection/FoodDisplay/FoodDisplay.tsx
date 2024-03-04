@@ -7,6 +7,7 @@ import productsStore from "../../../stores/productsStore";
 
 const FoodDisplay = () => {
   const { products, isLoading } = productsStore;
+
   return (
     <div className="foodDisplay">
       {isLoading

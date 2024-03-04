@@ -1,0 +1,14 @@
+@import '../../../../styles/variables.scss';
+
+.address{
+    background-color: $primary-color;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    h2{
+        margin: 0 0 1rem 0;
+    }
+    div{
+        margin-top: 0.5rem;
+    }
+}

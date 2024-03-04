@@ -1,0 +1,78 @@
+@import '../../../styles/variables.scss';
+
+.feedbackPopup {
+  background-color: $primary-color;
+  min-width: 500px;
+  min-height: 400px;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageUploader {
+    :first-child{
+        display: flex;
+        flex-direction: column;
+    }
+  margin-bottom: 1rem;
+  img{
+    max-width: 100%;
+    max-height: 400px;
+    margin-bottom: 1rem;
+  }
+  input {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.commentSection {
+  flex: 1;
+  width: 100%;
+   :first-child{
+    color:white
+   }
+}
+
+.feedbackButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  button {
+    font-size: medium;
+    padding: 0.5rem;
+    width: 100%;
+    flex: 1;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+
+    &.positive {
+      background-color: green;
+      color: white;
+    }
+
+    &.negative {
+      background-color: red;
+      color: white;
+    }
+  }
+}
+
+.submitBtn {
+  font-size: medium;
+  background-color: $button-color;
+  color: white;
+  padding: 1rem;
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    background-color: $hover-color;
+  }
+}

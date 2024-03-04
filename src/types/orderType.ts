@@ -1,4 +1,4 @@
-import { Product } from "./productType";
+import { ExtendedProduct, Product } from "./productType";
 
 export type OrderType = {
   number: number;
@@ -6,7 +6,7 @@ export type OrderType = {
   address: Address;
   payment: "Картой" | "Наличными";
   contacts: Contacts;
-  products: Product[];
+  products: ExtendedProduct[];
 };
 
 export type Address = {

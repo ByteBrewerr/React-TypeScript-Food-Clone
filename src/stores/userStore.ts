@@ -89,7 +89,7 @@ class UserStore {
     return new Promise<void>((resolve, reject) => {
       const db = getDatabase();
       onValue(
-        ref(db, "/users/" + uid),
+        ref(db, `/users/${uid}`),
         (snapshot) => {
           const data = snapshot.val();
           const { email, name, number, uid } = data;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./userInfo.scss";
-import OneUserInfo from "./OneUserInfo/OneUserInfo";
+import OneUserInfo from "../../../shared/OneUserInfo/OneUserInfo";
 import { observer } from "mobx-react-lite";
 import { useUserData } from "../../../hooks/useUserData";
 import { usePopUp } from "../../../hooks/usePopUp";

@@ -3,7 +3,6 @@
 .singleOrder {
   background-color: $primary-color;
   padding: 1rem;
-  margin-top: 1rem;
   border-radius: 10px;
   width: calc(33% - 0.5rem);
   box-sizing: border-box;
@@ -38,4 +37,4 @@
     .singleOrder {
       width: calc(100%); 
     }
-  }
+}
