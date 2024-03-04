@@ -1,12 +1,12 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import { TextField, Button } from "@mui/material";
 import imagePlaceholder from "../../../assets/image-placeholder.png";
 import "./feedbackPopup.scss";
+import { getDatabase, ref, update } from "firebase/database";
 
-interface FeedbackPopupProps {}
-
-const FeedbackPopup: React.FC<FeedbackPopupProps> = () => {
+const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string }) => {
   const [comment, setComment] = useState<string>("");
+  console.log(orderNumber, uid);
   const [isPositive, setIsPositive] = useState<boolean>(true);
   const [image, setImage] = useState<File | null>(null);
 
@@ -19,7 +19,15 @@ const FeedbackPopup: React.FC<FeedbackPopupProps> = () => {
     setIsPositive(type === "positive");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const feedback = { comment, isPositive, image };
+    const database = getDatabase();
+    const userFeedbackRef = ref(database, `users/${uid}/orders/${orderNumber}/feedback/`);
+    const feedbackRef = ref(database, `feedbacks/${orderNumber}`);
+
+    await update(userFeedbackRef, { ...feedback });
+    await update(feedbackRef, { ...feedback });
+
     console.log("Отправка отзыва:", { comment, isPositive, image });
   };
 

@@ -86,7 +86,7 @@ class UserStore {
   };
 
   async fetchUserData(uid: string) {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve) => {
       const db = getDatabase();
       onValue(
         ref(db, `/users/${uid}`),

@@ -82,7 +82,7 @@ const ContactInfo = () => {
     const number = formData.find((item) => item.label === "Номер")?.info ?? "";
 
     const newOrder: OrderType = {
-      number: orderNumber! + 1,
+      number: orderNumber!,
       address: { street, house },
       contacts: { name, number },
       date: `${getFormattedTime().day}, ${getFormattedTime().time}`,
