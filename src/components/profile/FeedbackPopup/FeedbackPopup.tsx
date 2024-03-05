@@ -3,10 +3,11 @@ import { TextField, Button } from "@mui/material";
 import imagePlaceholder from "../../../assets/image-placeholder.png";
 import "./feedbackPopup.scss";
 import { getDatabase, ref, update } from "firebase/database";
+import notify from "../../../utils/notify";
+import { getStorage, ref as storageReff, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string }) => {
   const [comment, setComment] = useState<string>("");
-  console.log(orderNumber, uid);
   const [isPositive, setIsPositive] = useState<boolean>(true);
   const [image, setImage] = useState<File | null>(null);
 
@@ -20,15 +21,35 @@ const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string 
   };
 
   const handleSubmit = async () => {
-    const feedback = { comment, isPositive, image };
     const database = getDatabase();
+    const storage = getStorage();
+
+    // Step 1: Upload the image to Firebase Storage
+    if (image) {
+      const storageRef = storageReff(storage, `images/${uid}_${orderNumber}`);
+      await uploadBytes(storageRef, image);
+    }
+
+    // Step 2: Get the download URL of the uploaded image
+    let imageUrl = null;
+    if (image) {
+      const storageRef = storageReff(storage, `images/${uid}_${orderNumber}`);
+      imageUrl = await getDownloadURL(storageRef);
+    }
+
+    // Step 3: Save the feedback data to the Realtime Database
+    console.log(imageUrl);
+    const feedback = { comment, isPositive, imageUrl }; // Use the image URL instead of the image file
     const userFeedbackRef = ref(database, `users/${uid}/orders/${orderNumber}/feedback/`);
     const feedbackRef = ref(database, `feedbacks/${orderNumber}`);
 
-    await update(userFeedbackRef, { ...feedback });
-    await update(feedbackRef, { ...feedback });
-
-    console.log("Отправка отзыва:", { comment, isPositive, image });
+    try {
+      await update(userFeedbackRef, { ...feedback });
+      await update(feedbackRef, { ...feedback });
+      notify("Отзыв успешно загружен", "success");
+    } catch (error) {
+      notify("Ошибка загрузки отзыва", "error");
+    }
   };
 
   return (
