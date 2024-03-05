@@ -20,22 +20,13 @@ const OrderDetailsPage = () => {
   const storedUid = localStorage.getItem("uid");
   const portalContainer = document.getElementById("portal-container");
 
-  if (!portalContainer) {
-    alert("no portal");
-    return null;
-  }
-
   useEffect(() => {
     if (!orders.length && storedUid) {
       fetchOrders(storedUid);
     }
   }, []);
 
-  if (!order) {
-    return null;
-  }
-
-  if (!storedUid) {
+  if (!portalContainer || !order || !storedUid) {
     return null;
   }
 
@@ -51,7 +42,7 @@ const OrderDetailsPage = () => {
       {isPopUpVisible &&
         ReactDOM.createPortal(
           <Overlay handlePopup={handlePopUp}>
-            <FeedbackPopup orderNumber={parseInt(orderNumber!)} uid={storedUid} />
+            <FeedbackPopup orderNumber={parseInt(orderNumber!)} uid={storedUid} handlePopup={handlePopUp} />
           </Overlay>,
           portalContainer
         )}

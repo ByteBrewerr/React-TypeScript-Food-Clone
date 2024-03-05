@@ -6,7 +6,7 @@ import { getDatabase, ref, update } from "firebase/database";
 import notify from "../../../utils/notify";
 import { getStorage, ref as storageReff, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string }) => {
+const FeedbackPopup = ({ orderNumber, uid, handlePopup }: { orderNumber: number; uid: string; handlePopup: () => void }) => {
   const [comment, setComment] = useState<string>("");
   const [isPositive, setIsPositive] = useState<boolean>(true);
   const [image, setImage] = useState<File | null>(null);
@@ -24,22 +24,18 @@ const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string 
     const database = getDatabase();
     const storage = getStorage();
 
-    // Step 1: Upload the image to Firebase Storage
     if (image) {
       const storageRef = storageReff(storage, `images/${uid}_${orderNumber}`);
       await uploadBytes(storageRef, image);
     }
 
-    // Step 2: Get the download URL of the uploaded image
     let imageUrl = null;
     if (image) {
       const storageRef = storageReff(storage, `images/${uid}_${orderNumber}`);
       imageUrl = await getDownloadURL(storageRef);
     }
 
-    // Step 3: Save the feedback data to the Realtime Database
-    console.log(imageUrl);
-    const feedback = { comment, isPositive, imageUrl }; // Use the image URL instead of the image file
+    const feedback = { comment, isPositive, imageUrl };
     const userFeedbackRef = ref(database, `users/${uid}/orders/${orderNumber}/feedback/`);
     const feedbackRef = ref(database, `feedbacks/${orderNumber}`);
 
@@ -50,6 +46,7 @@ const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string 
     } catch (error) {
       notify("Ошибка загрузки отзыва", "error");
     }
+    handlePopup();
   };
 
   return (
@@ -74,7 +71,7 @@ const FeedbackPopup = ({ orderNumber, uid }: { orderNumber: number; uid: string 
           rows={4}
           placeholder="Оставьте ваш комментарий..."
           value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          onChange={(e) => (comment.length <= 600 ? setComment(e.target.value) : {})}
           fullWidth
         />
       </div>

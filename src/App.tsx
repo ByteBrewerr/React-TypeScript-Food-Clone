@@ -11,6 +11,7 @@ import UserInfo from "./components/profile/UserInfo/UserInfo";
 import OrderHistory from "./components/profile/OrderHistory/OrderHistory";
 import OrderPage from "./pages/OrderPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
+import FeedbackHistory from "./components/profile/FeedbackHistory/FeedbackHistory";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="personalData" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrderHistory />} />
           <Route path="orderHistory/:orderNumber" element={<OrderDetailsPage />} />
+          <Route path="feedbackHistory" element={<FeedbackHistory />} />
         </Route>
         <Route path="/checkout" element={<OrderPage />} />
       </Routes>

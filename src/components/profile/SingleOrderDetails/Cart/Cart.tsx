@@ -16,7 +16,7 @@ const Cart: FC<CartProps> = ({ products }) => {
       <h2>Корзина</h2>
       {products.map((product) => {
         return (
-          <div className="productsList">
+          <div className="productsList" key={product.id}>
             <img src={product.img} alt="" />
             <span>
               {product.name} - {product.count} шт.

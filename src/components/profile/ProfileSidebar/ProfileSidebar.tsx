@@ -11,6 +11,7 @@ import { auth } from "../../../firebase";
 const textWithPath = [
   { path: "personalData", text: "Личные данные" },
   { path: "orderHistory", text: "История заказов" },
+  { path: "feedbackHistory", text: "История отзывов" },
 ];
 
 const ProfileSidebar = () => {

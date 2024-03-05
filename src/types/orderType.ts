@@ -1,12 +1,13 @@
-import { ExtendedProduct, Product } from "./productType";
+import { ExtendedProduct } from "./productType";
 
 export type OrderType = {
   number: number;
   date: string;
   address: Address;
-  payment: "Картой" | "Наличными";
+  payment: Payment;
   contacts: Contacts;
   products: ExtendedProduct[];
+  feedback?: Feedback;
 };
 
 export type Address = {
@@ -18,4 +19,10 @@ export type Payment = "Картой" | "Наличными";
 export type Contacts = {
   name: string;
   number: string;
+};
+
+type Feedback = {
+  imageUrl: string;
+  comment: string;
+  isPositive: boolean;
 };
