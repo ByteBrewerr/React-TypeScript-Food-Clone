@@ -21,8 +21,11 @@ export type Contacts = {
   number: string;
 };
 
-type Feedback = {
-  imageUrl: string;
+export type Feedback = {
+  imageUrl: string | null;
   comment: string;
   isPositive: boolean;
+  date: string;
+  name: string;
+  orderNumber: number;
 };

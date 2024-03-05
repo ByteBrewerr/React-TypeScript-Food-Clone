@@ -1,15 +1,29 @@
-import React, { ChangeEvent, FC, useState } from "react";
-import { TextField, Button } from "@mui/material";
+import React, { ChangeEvent, useState } from "react";
+import { TextField, Button, CircularProgress } from "@mui/material";
 import imagePlaceholder from "../../../assets/image-placeholder.png";
 import "./feedbackPopup.scss";
 import { getDatabase, ref, update } from "firebase/database";
 import notify from "../../../utils/notify";
 import { getStorage, ref as storageReff, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Feedback } from "../../../types/orderType";
 
-const FeedbackPopup = ({ orderNumber, uid, handlePopup }: { orderNumber: number; uid: string; handlePopup: () => void }) => {
+const FeedbackPopup = ({
+  orderNumber,
+  uid,
+  handlePopup,
+  date,
+  name,
+}: {
+  orderNumber: number;
+  uid: string;
+  handlePopup: () => void;
+  date: string;
+  name: string;
+}) => {
   const [comment, setComment] = useState<string>("");
   const [isPositive, setIsPositive] = useState<boolean>(true);
   const [image, setImage] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -21,6 +35,7 @@ const FeedbackPopup = ({ orderNumber, uid, handlePopup }: { orderNumber: number;
   };
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     const database = getDatabase();
     const storage = getStorage();
 
@@ -35,7 +50,7 @@ const FeedbackPopup = ({ orderNumber, uid, handlePopup }: { orderNumber: number;
       imageUrl = await getDownloadURL(storageRef);
     }
 
-    const feedback = { comment, isPositive, imageUrl };
+    const feedback: Feedback = { comment, isPositive, imageUrl, name, date, orderNumber };
     const userFeedbackRef = ref(database, `users/${uid}/orders/${orderNumber}/feedback/`);
     const feedbackRef = ref(database, `feedbacks/${orderNumber}`);
 
@@ -46,6 +61,7 @@ const FeedbackPopup = ({ orderNumber, uid, handlePopup }: { orderNumber: number;
     } catch (error) {
       notify("Ошибка загрузки отзыва", "error");
     }
+    setIsSubmitting(false);
     handlePopup();
   };
 
@@ -94,7 +110,7 @@ const FeedbackPopup = ({ orderNumber, uid, handlePopup }: { orderNumber: number;
       </div>
 
       <Button variant="contained" color={"primary"} onClick={handleSubmit} fullWidth>
-        Отправить отзыв
+        {isSubmitting ? <CircularProgress size={20} /> : "Отправить отзыв"}
       </Button>
     </div>
   );

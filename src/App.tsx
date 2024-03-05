@@ -2,7 +2,7 @@ import { ToastContainer } from "react-toastify";
 import "./App.scss";
 import MainPage from "./pages/MainPage";
 import { Route, Routes } from "react-router";
-import FeedbackPage from "./pages/FeedbackPage";
+import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 import Header from "./components/Header/Header";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";

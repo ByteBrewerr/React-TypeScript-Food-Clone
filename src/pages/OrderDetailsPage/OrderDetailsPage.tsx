@@ -42,7 +42,13 @@ const OrderDetailsPage = () => {
       {isPopUpVisible &&
         ReactDOM.createPortal(
           <Overlay handlePopup={handlePopUp}>
-            <FeedbackPopup orderNumber={parseInt(orderNumber!)} uid={storedUid} handlePopup={handlePopUp} />
+            <FeedbackPopup
+              orderNumber={parseInt(orderNumber!)}
+              uid={storedUid}
+              handlePopup={handlePopUp}
+              name={order.contacts.name}
+              date={order.date}
+            />
           </Overlay>,
           portalContainer
         )}

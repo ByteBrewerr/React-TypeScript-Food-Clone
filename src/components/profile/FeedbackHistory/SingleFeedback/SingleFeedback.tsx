@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import "./singleFeedback.scss";
 import { BsCalendar2Date } from "react-icons/bs";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
+import "./singleFeedback.scss";
 
 type SingleFeedbackProps = {
   date: string;
@@ -17,7 +17,16 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
       <div className="singleFeedbackInfo">
         <div>
           <BsCalendar2Date size={20} />
-          <span>{date.split(",").shift()}</span>
+          <span>
+            {date
+              .split(",")
+              .shift()
+              ?.split("")
+              .map((char) => {
+                if (char == ":") return "/";
+                return char;
+              })}
+          </span>
         </div>
         <div>
           {isPositive ? <AiFillLike size={20} color={"green"} /> : <AiFillDislike size={20} color={"red"} />}

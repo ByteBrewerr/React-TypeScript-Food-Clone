@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import "./contactInfo.scss";
-import OneUserInfo from "../../../shared/OneUserInfo/OneUserInfo";
+import OneUserInfo from "../../shared/OneUserInfo/OneUserInfo";
 import { FaPhone, FaUser } from "react-icons/fa6";
 import { MdAttachMoney } from "react-icons/md";
 import { FaStreetView } from "react-icons/fa";
-import userStore from "../../../stores/userStore";
+import userStore from "../../stores/userStore";
 import { observer } from "mobx-react-lite";
-import Footer from "../../Footer/Footer";
-import sleep from "../../../utils/sleep";
+import Footer from "../Footer/Footer";
+import sleep from "../../utils/sleep";
 import CircularProgress from "@mui/material/CircularProgress";
-import { get, getDatabase, onValue, push, ref, runTransaction, set, update } from "firebase/database";
-import notify from "../../../utils/notify";
+import { get, getDatabase, ref, runTransaction, update } from "firebase/database";
+import notify from "../../utils/notify";
 import { useNavigate } from "react-router";
-import { OrderType, Payment } from "../../../types/orderType";
-import cartStore from "../../../stores/cartStore";
-import getFormattedTime from "../../../utils/getFormattedTime";
-import { MIN_ORDER_COST } from "../../../utils/constants/appConstants";
+import { OrderType, Payment } from "../../types/orderType";
+import cartStore from "../../stores/cartStore";
+import getFormattedTime from "../../utils/getFormattedTime";
+import { MIN_ORDER_COST } from "../../utils/constants/appConstants";
+import "./makeOrder.scss";
 
 const ContactInfo = () => {
   const { name, number, uid } = userStore;

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import orderStore from "../../../stores/ordersStore";
 import SingleFeedback from "./SingleFeedback/SingleFeedback";
-
 import Masonry from "@mui/lab/Masonry";
-import "./feedbackHistory.scss";
+import { observer } from "mobx-react-lite";
 
 const FeedbackHistory: React.FC = () => {
   const { orders, fetchOrders } = orderStore;
@@ -39,4 +38,4 @@ const FeedbackHistory: React.FC = () => {
   );
 };
 
-export default FeedbackHistory;
+export default observer(FeedbackHistory);

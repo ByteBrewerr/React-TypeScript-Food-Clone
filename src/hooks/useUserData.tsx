@@ -14,10 +14,10 @@ export const useUserData = (): UserData[] => {
 
   useEffect(() => {
     const data: UserData[] = [
-      { label: "Почта", info: email, icon: <FaEnvelope /> },
-      { label: "Номер", info: number, icon: <FaPhone /> },
-      { label: "Имя", info: name, icon: <FaUser /> },
-      { label: "ID пользователя", info: uid, icon: <FaIdCard /> },
+      { label: "Почта", info: email, icon: <FaEnvelope size={20} /> },
+      { label: "Номер", info: number, icon: <FaPhone size={20} /> },
+      { label: "Имя", info: name, icon: <FaUser size={20} /> },
+      { label: "ID пользователя", info: uid, icon: <FaIdCard size={20} /> },
     ];
 
     setUserData(data);
