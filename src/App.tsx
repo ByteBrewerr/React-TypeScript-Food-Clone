@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "./App.scss";
 import MainPage from "./pages/MainPage";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 import Header from "./components/Header/Header";
 import LoginPage from "./pages/LoginPage";
@@ -12,6 +12,8 @@ import OrderHistory from "./components/profile/OrderHistory/OrderHistory";
 import OrderPage from "./pages/OrderPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 import FeedbackHistory from "./components/profile/FeedbackHistory/FeedbackHistory";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+import { observer } from "mobx-react-lite";
 
 function App() {
   return (
@@ -23,16 +25,30 @@ function App() {
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<ProfilePage />}>
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        >
           <Route path="personalData" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrderHistory />} />
           <Route path="orderHistory/:orderNumber" element={<OrderDetailsPage />} />
           <Route path="feedbackHistory" element={<FeedbackHistory />} />
         </Route>
-        <Route path="/checkout" element={<OrderPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <OrderPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
 }
 
-export default App;
+export default observer(App);

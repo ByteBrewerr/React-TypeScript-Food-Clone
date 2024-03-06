@@ -14,8 +14,8 @@ const FeedbackHistory: React.FC = () => {
     }
   }, []);
 
-  if (!orders) {
-    return <span>У вас нет отзывов</span>;
+  if (orders.every((order) => order.feedback === undefined)) {
+    return <h3>У вас нет отзывов</h3>;
   }
 
   return (

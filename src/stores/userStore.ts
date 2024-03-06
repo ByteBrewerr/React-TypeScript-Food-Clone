@@ -13,9 +13,7 @@ class UserStore {
 
   constructor() {
     makeAutoObservable(this);
-
     this.setIsLoading(true);
-
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         await this.fetchUserData(user.uid);

@@ -32,6 +32,7 @@ const ProfileSidebar = () => {
   const handleExit = async (isExit: boolean) => {
     if (isExit) {
       await signOut(auth);
+      localStorage.clear();
       navigate("/");
       return;
     }
