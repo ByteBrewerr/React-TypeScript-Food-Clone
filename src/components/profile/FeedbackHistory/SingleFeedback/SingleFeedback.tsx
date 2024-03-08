@@ -74,11 +74,6 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
         {img && <img src={img} />}
         <span>{comment}</span>
       </div>
-      {isAdminOrNotFeedbackPage && (
-        <button className="button deleteBtn" onClick={() => handlePopUp()}>
-          Удалить
-        </button>
-      )}
 
       {isPopUpVisible && (
         <>

@@ -21,10 +21,12 @@ const FoodNavigation = () => {
       }
       return productService.getProductsByCategory(foodCategoriesEng[active]);
     },
+
     onSuccess(data) {
       setProducts(data || []);
     },
-    onSettled() {
+    onSettled(data) {
+      setProducts(data || []);
       setIsLoading(false);
     },
   });
