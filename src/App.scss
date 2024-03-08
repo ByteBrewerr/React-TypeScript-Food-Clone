@@ -42,3 +42,16 @@ body {
   @include nav-button-styles($hover-color);
   color: $hover-color;
 }
+
+.button{
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: $button-color;
+  padding: 0.5rem;
+  color: white;
+
+  &:hover{
+    background-color: $hover-color;
+  }
+}

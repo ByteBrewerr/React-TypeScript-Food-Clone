@@ -30,10 +30,11 @@ export const registerUser = async (data: SignUpFormInputs) => {
         name: data.name,
         number: data.number,
         uid: user.uid,
+        isAdmin: false,
         favouriteProducts: [],
       });
 
-      userStore.setUser({ email: data.email, name: data.name, number: data.number, uid: user.uid });
+      userStore.setUser({ email: data.email, name: data.name, number: data.number, uid: user.uid, isAdmin: false });
       return true;
     }
   } catch (error: any) {
@@ -56,8 +57,8 @@ export const loginUser = async (data: LoginFormInputs) => {
       ref(db, "/users/" + user.uid),
       (snapshot) => {
         const userData = snapshot.val();
-        const { email, name, number, uid } = userData;
-        userStore.setUser({ email, name, number, uid });
+        const { email, name, number, uid, isAdmin } = userData;
+        userStore.setUser({ email, name, number, uid, isAdmin });
       },
       {
         onlyOnce: true,

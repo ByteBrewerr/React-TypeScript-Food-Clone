@@ -25,6 +25,7 @@ const FeedbackHistory: React.FC = () => {
 
         return (
           <SingleFeedback
+            orderNumber={order.number}
             key={order.number}
             date={order.date}
             name={order.contacts.name}

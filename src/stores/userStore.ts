@@ -9,6 +9,7 @@ class UserStore {
   number: string = "";
   name: string = "";
   uid: string = "";
+  isAdmin: boolean = false;
   isLoadingUser = false;
 
   constructor() {
@@ -39,6 +40,7 @@ class UserStore {
     this.number = user.number;
     this.name = user.name;
     this.uid = user.uid;
+    this.isAdmin = user.isAdmin;
   };
 
   updateNumber = async (number: string) => {
@@ -81,6 +83,7 @@ class UserStore {
     this.number = "";
     this.name = "";
     this.uid = "";
+    this.isAdmin = false;
   };
 
   async fetchUserData(uid: string) {
@@ -90,8 +93,8 @@ class UserStore {
         ref(db, `/users/${uid}`),
         (snapshot) => {
           const data = snapshot.val();
-          const { email, name, number, uid } = data;
-          this.setUser({ email, name, number, uid });
+          const { email, name, number, uid, isAdmin } = data;
+          this.setUser({ email, name, number, uid, isAdmin });
           resolve();
         },
         {

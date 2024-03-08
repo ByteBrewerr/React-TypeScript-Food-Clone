@@ -71,7 +71,7 @@ const FeedbackPopup = ({
         {image ? (
           <>
             <input type="file" accept="image/*" onChange={handleImageChange} />
-            <img src={URL.createObjectURL(image)} alt="Загруженная картинка" />
+            <img src={URL.createObjectURL(image)} alt="loaded image" />
           </>
         ) : (
           <>

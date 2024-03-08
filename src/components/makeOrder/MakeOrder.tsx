@@ -14,7 +14,7 @@ import { useNavigate } from "react-router";
 import { OrderType, Payment } from "../../types/orderType";
 import cartStore from "../../stores/cartStore";
 import getFormattedTime from "../../utils/getFormattedTime";
-import { MIN_ORDER_COST } from "../../utils/constants/appConstants";
+import { MIN_ORDER_COST } from "../../constants/appConstants";
 import "./makeOrder.scss";
 
 const ContactInfo = () => {

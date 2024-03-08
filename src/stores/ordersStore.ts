@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { OrderType } from "../types/orderType";
 import { getDatabase, onValue, ref } from "firebase/database";
+import notify from "../utils/notify";
 
 class OrderStore {
   orders: OrderType[] = [];
@@ -28,7 +29,7 @@ class OrderStore {
         }
       });
     } catch (error) {
-      console.log("Ошибка загрузки истории заказов", error);
+      notify("Ошибка загрузки истории заказов", "error");
     }
   };
 

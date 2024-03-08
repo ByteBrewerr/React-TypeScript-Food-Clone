@@ -1,6 +1,6 @@
 import React from "react";
 import PagesNavigation from "../components/PagesNavigation/PagesNavigation";
-import MakeOrder from "../components/makeOrder/MakeOrder";
+import MakeOrder from "../components/MakeOrder/MakeOrder";
 
 const OrderPage = () => {
   return (

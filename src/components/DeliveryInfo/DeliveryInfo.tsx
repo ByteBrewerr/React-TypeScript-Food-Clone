@@ -2,7 +2,7 @@ import React from "react";
 import { FaRegClock, FaMedal, FaTruck } from "react-icons/fa";
 import { FaWallet } from "react-icons/fa6";
 import "./DeliveryInfo.scss";
-import { DELIVERY_COST, MIN_ORDER_COST, DELIVRY_TIME, FREE_DELIVERY_FROM } from "../../utils/constants/appConstants";
+import { DELIVERY_COST, MIN_ORDER_COST, DELIVRY_TIME, FREE_DELIVERY_FROM } from "../../constants/appConstants";
 
 const DeliveryInfo = () => {
   return (
