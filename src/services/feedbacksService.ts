@@ -2,7 +2,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { Feedback } from "../types/orderType";
 import sleep from "../utils/sleep";
 
-const LIMIT = 6;
+const LIMIT = 8;
 export function getFeedbacks({
   pageParam,
 }: {
