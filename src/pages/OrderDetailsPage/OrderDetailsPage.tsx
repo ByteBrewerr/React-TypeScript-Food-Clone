@@ -11,6 +11,7 @@ import { usePopUp } from "../../hooks/usePopUp";
 import FeedbackPopup from "../../components/profile/FeedbackPopup/FeedbackPopup";
 import ReactDOM from "react-dom";
 import Overlay from "../../shared/modals/Overlay/Overlay";
+import { Portal } from "@mui/material";
 
 const OrderDetailsPage = () => {
   const { orderNumber } = useParams();
@@ -39,8 +40,8 @@ const OrderDetailsPage = () => {
         <Cart products={order.products} />
         <button onClick={() => handlePopUp()}>Оставить отзыв</button>
       </div>
-      {isPopUpVisible &&
-        ReactDOM.createPortal(
+      {isPopUpVisible && (
+        <Portal>
           <Overlay handlePopup={handlePopUp}>
             <FeedbackPopup
               orderNumber={parseInt(orderNumber!)}
@@ -49,9 +50,9 @@ const OrderDetailsPage = () => {
               name={order.contacts.name}
               date={order.date}
             />
-          </Overlay>,
-          portalContainer
-        )}
+          </Overlay>
+        </Portal>
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import SingleFeedback from "../../components/profile/FeedbackHistory/SingleFeedback/SingleFeedback";
 import Masonry from "@mui/lab/Masonry";
 import { useInView } from "react-intersection-observer";
@@ -15,16 +15,11 @@ const FeedbackPage = () => {
   });
   const { ref, inView } = useInView();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (inView) {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
-
-  if (status == "pending") {
-    return <div className="container">...Loading</div>;
-  }
-
   return (
     <div className="container feedbackPage">
       <Masonry columns={2} spacing={2}>

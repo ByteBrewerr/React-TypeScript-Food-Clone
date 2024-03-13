@@ -27,7 +27,6 @@ const SignUp: FC = () => {
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phonePattern = /^\+\d{11}$/;
-
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./profileSidebar.scss";
 import Confirmation from "../../../shared/modals/Confirmation/Confirmation";
-import ReactDOM from "react-dom";
 import Overlay from "../../../shared/modals/Overlay/Overlay";
 import { usePopUp } from "../../../hooks/usePopUp";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase";
+import { Portal } from "@mui/material";
 
 const textWithPath = [
   { path: "personalData", text: "Личные данные" },
@@ -70,14 +70,11 @@ const ProfileSidebar = () => {
         Выйти
       </button>
       {isPopUpVisible && (
-        <>
-          {ReactDOM.createPortal(
-            <Overlay handlePopup={handlePopUp}>
-              <Confirmation text={"Вы действительно хотите выйти?"} onClick={handleExit} />
-            </Overlay>,
-            portalContainer
-          )}
-        </>
+        <Portal>
+          <Overlay handlePopup={handlePopUp}>
+            <Confirmation text={"Вы действительно хотите выйти?"} onClick={handleExit} />
+          </Overlay>
+        </Portal>
       )}
     </div>
   );
