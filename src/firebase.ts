@@ -1,17 +1,17 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { initializeApp, FirebaseApp } from "firebase/app";
+import { getDatabase, Database } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC3HHRB-PtgWyvtxsvVOyFM3yDpCEXz__Q",
-  authDomain: "food-clone-7945b.firebaseapp.com",
-  projectId: "food-clone-7945b",
-  storageBucket: "food-clone-7945b.appspot.com",
-  messagingSenderId: "277114956425",
-  appId: "1:277114956425:web:18b4afad8e1c8c5242b458",
-  databaseURL: "https://food-clone-7945b-default-rtdb.firebaseio.com/",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
 };
 
-const app = initializeApp(firebaseConfig);
+const app: FirebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const database = getDatabase(app);
+export const database: Database = getDatabase(app);

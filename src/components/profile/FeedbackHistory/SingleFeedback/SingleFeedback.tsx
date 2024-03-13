@@ -4,12 +4,12 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import "./singleFeedback.scss";
 import userStore from "../../../../stores/userStore";
 import { observer } from "mobx-react-lite";
-import ReactDOM from "react-dom";
 import { usePopUp } from "../../../../hooks/usePopUp";
 import Confirmation from "../../../../shared/modals/Confirmation/Confirmation";
 import Overlay from "../../../../shared/modals/Overlay/Overlay";
 import { getDatabase, ref, set } from "firebase/database";
 import notify from "../../../../utils/notify";
+import { Portal } from "@mui/material";
 
 type SingleFeedbackProps = {
   date: string;
@@ -23,7 +23,6 @@ type SingleFeedbackProps = {
 const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositive, img, orderNumber }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
   const storedUid = localStorage.getItem("uid");
-  const portalContainer = document.getElementById("portal-container");
 
   const isFeedbackPage = window.location.pathname === "/feedback";
   const isAdminOrNotFeedbackPage = userStore.isAdmin || !isFeedbackPage;
@@ -43,12 +42,6 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
     }
     handlePopUp();
   };
-
-  if (!portalContainer) {
-    alert("no portal");
-    return null;
-  }
-
   return (
     <div className="singleFeedback">
       <div className="singleFeedbackInfo">
@@ -74,15 +67,18 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
         {img && <img src={img} />}
         <span>{comment}</span>
       </div>
+      <button className="deleteBtn" onClick={() => handlePopUp()}>
+        Удалить
+      </button>
 
       {isPopUpVisible && (
         <>
-          {ReactDOM.createPortal(
+          <Portal>
             <Overlay handlePopup={handlePopUp}>
               <Confirmation text={"Вы действительно хотите удалить отзыв?"} onClick={handleDelete} />
-            </Overlay>,
-            portalContainer
-          )}
+            </Overlay>
+            ,
+          </Portal>
         </>
       )}
     </div>

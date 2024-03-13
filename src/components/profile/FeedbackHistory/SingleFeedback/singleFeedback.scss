@@ -34,4 +34,10 @@
 }
 .deleteBtn{
     margin-top: 1rem;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    background-color: $button-color;
+    padding: 0.5rem;
+    cursor: pointer;
 }

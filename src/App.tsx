@@ -1,8 +1,8 @@
 import { ToastContainer } from "react-toastify";
-import "./App.scss";
 import Header from "./components/Header/Header";
 import { observer } from "mobx-react-lite";
 import AppRoutes from "./components/routes/AppRoutes";
+import "./styles/global.scss";
 
 function App() {
   return (

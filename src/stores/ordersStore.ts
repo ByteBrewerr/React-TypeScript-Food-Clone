@@ -16,7 +16,7 @@ class OrderStore {
     try {
       const database = getDatabase();
       const userOrdersRef = ref(database, `users/${uid}/orders`);
-      onValue(userOrdersRef, async (snapshot) => {
+      await onValue(userOrdersRef, async (snapshot) => {
         const data = await snapshot.val();
         if (data) {
           const arrayData = Object.values(data) as OrderType[];
