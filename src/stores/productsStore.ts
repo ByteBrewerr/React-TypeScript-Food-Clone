@@ -82,18 +82,104 @@ class ProductsStore {
   };
 
   setToppings = async () => {
-    try {
-      const response = await fetch("../../public/toppings.json");
-      const jsonData = await response.json();
-
-      runInAction(() => {
-        this.toppings = jsonData;
-      });
-    } catch (error) {
-      console.error("Error loading toppings:", error);
-    }
+    this.toppings = data;
   };
 }
 
 const productsStore = new ProductsStore();
 export default productsStore;
+
+var data = [
+  {
+    name: "Котлета 45 гр.",
+    price: "55",
+  },
+  {
+    name: "Котлета 90 гр.",
+    price: "95",
+  },
+  {
+    name: "Котлета 110 гр.",
+    price: "115",
+  },
+  {
+    name: "Котлета 150 гр.",
+    price: "155",
+  },
+  {
+    name: "Жареный бекон",
+    price: "35",
+  },
+  {
+    name: "Сыр Моцарелла",
+    price: "35",
+  },
+  {
+    name: "Вяленый томат",
+    price: "35",
+  },
+  {
+    name: "Сыр Дорблю",
+    price: "35",
+  },
+  {
+    name: "Салат Айсберг",
+    price: "35",
+  },
+  {
+    name: "Жареные шампиньоны",
+    price: "35",
+  },
+  {
+    name: "Жареное яйцо",
+    price: "35",
+  },
+  {
+    name: "Перец Халапеньо",
+    price: "25",
+  },
+  {
+    name: "Маринованный Лук",
+    price: "25",
+  },
+  {
+    name: "Маринованные Огурчики",
+    price: "25",
+  },
+  {
+    name: "Помидор",
+    price: "25",
+  },
+  {
+    name: "Хрустящий Лук Фри",
+    price: "25",
+  },
+  {
+    name: "Соус Красный Лесоруб",
+    price: "40",
+  },
+  {
+    name: "Соус Кимрский пацан",
+    price: "40",
+  },
+  {
+    name: "Соус Сытый папа",
+    price: "40",
+  },
+  {
+    name: "Соус Взрослый дядя",
+    price: "40",
+  },
+  {
+    name: "Сырная котлета",
+    price: "70",
+  },
+  {
+    name: "Сыр Чеддер",
+    price: "35",
+  },
+  {
+    name: "Сыр Эмменталь",
+    price: "35",
+  },
+];
