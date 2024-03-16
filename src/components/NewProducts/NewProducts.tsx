@@ -4,7 +4,7 @@ import NewProductsPopup from "../../shared/modals/NewProducts/NewProductsPopup";
 import newProducts from "../../assets/newProducts.jpg";
 import Overlay from "../../shared/modals/Overlay/Overlay";
 import "./NewProducts.scss";
-import { Portal } from "@mui/material";
+import Portal from "../../shared/Portal/Portal";
 
 const NewProducts: FC = () => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
