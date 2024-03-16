@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "./FoodItemPopup.scss";
+import "./foodItemPopup.scss";
 import { Product } from "../../../../../types/productType";
 import ProductCounter from "../../../../../shared/ProductCounter/ProductCounter";
 import Toppings from "./Toppings/Toppings";
