@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC } from "react";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";

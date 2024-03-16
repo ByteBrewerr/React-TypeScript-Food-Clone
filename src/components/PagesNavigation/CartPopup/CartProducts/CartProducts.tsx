@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ExtendedProduct } from "../../../../types/productType";
 import "./cartProducts.scss";
 import CartProduct from "./CartProduct/CartProduct";

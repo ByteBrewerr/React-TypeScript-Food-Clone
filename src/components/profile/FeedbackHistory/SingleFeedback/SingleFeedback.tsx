@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { BsCalendar2Date } from "react-icons/bs";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import "./singleFeedback.scss";

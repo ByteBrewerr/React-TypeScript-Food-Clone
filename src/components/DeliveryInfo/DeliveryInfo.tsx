@@ -1,4 +1,3 @@
-import React from "react";
 import { FaRegClock, FaMedal, FaTruck } from "react-icons/fa";
 import { FaWallet } from "react-icons/fa6";
 import "./DeliveryInfo.scss";

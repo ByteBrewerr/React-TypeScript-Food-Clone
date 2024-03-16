@@ -1,4 +1,3 @@
-import React from "react";
 import PagesNavigation from "../components/PagesNavigation/PagesNavigation";
 import MakeOrder from "../components/MakeOrder/MakeOrder";
 

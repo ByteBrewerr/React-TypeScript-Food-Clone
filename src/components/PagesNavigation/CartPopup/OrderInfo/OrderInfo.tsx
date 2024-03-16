@@ -1,4 +1,3 @@
-import React from "react";
 import "./orderInfo.scss";
 import { FaExclamation } from "react-icons/fa";
 import { DELIVERY_COST, MIN_ORDER_COST } from "../../../../constants/appConstants";

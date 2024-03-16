@@ -1,4 +1,3 @@
-import React from "react";
 import "./userInfo.scss";
 import OneUserInfo from "../../../shared/OneUserInfo/OneUserInfo";
 import { observer } from "mobx-react-lite";

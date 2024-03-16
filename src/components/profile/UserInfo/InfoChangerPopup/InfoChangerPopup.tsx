@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect, FC } from "react";
+import { useState, FormEvent, useEffect, FC } from "react";
 import "./infoChangerPopup.scss";
 import { useUserData } from "../../../../hooks/useUserData";
 import OneUserInfo from "../../../../shared/OneUserInfo/OneUserInfo";

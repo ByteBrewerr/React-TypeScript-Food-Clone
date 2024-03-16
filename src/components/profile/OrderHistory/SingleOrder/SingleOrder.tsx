@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./singleOrder.scss";
 import OneUserInfo from "../../../../shared/OneUserInfo/OneUserInfo";
 import { Address } from "../../../../types/orderType";

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import SingleFeedback from "../../components/profile/FeedbackHistory/SingleFeedback/SingleFeedback";
 import Masonry from "@mui/lab/Masonry";
 import { useInView } from "react-intersection-observer";
@@ -7,7 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import "./feedbackPage.scss";
 
 const FeedbackPage = () => {
-  const { data, status, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: ["feedbacks"],
     queryFn: getFeedbacks,
     initialPageParam: 0,

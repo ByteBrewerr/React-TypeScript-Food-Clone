@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect } from "react";
+import { FC, useLayoutEffect } from "react";
 import "./cartPopup.scss";
 import CartProducts from "./CartProducts/CartProducts";
 import OrderInfo from "./OrderInfo/OrderInfo";

@@ -1,4 +1,3 @@
-import React from "react";
 import "./contacts.scss";
 import OneUserInfo from "../../../../shared/OneUserInfo/OneUserInfo";
 import { FaPhone, FaUser } from "react-icons/fa6";

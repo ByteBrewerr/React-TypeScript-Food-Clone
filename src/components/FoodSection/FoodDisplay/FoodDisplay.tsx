@@ -1,4 +1,3 @@
-import React from "react";
 import FoodItem from "./FoodItem/FoodItem";
 import "./foodDisplay.scss";
 import { Skeleton } from "./Skeleton/Skeleton";

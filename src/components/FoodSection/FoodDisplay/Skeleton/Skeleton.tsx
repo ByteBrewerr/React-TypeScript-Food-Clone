@@ -1,4 +1,3 @@
-import React from "react";
 import "./skeleton.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 

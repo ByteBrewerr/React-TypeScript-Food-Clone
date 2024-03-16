@@ -1,7 +1,5 @@
-// Topping.tsx
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import "./topping.scss";
-import CustomCheckbox from "../../../../../../../shared/CustomCheckbox/CustomCheckbox";
 import toppingsStore from "../../../../../../../stores/toppingsStore";
 import { observer } from "mobx-react-lite";
 import Checkbox from "@mui/material/Checkbox";

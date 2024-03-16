@@ -1,5 +1,4 @@
-// NewProducts.jsx
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import ReactDOM from "react-dom";
 import { usePopUp } from "../../hooks/usePopUp";
 import NewProductsPopup from "../../shared/modals/NewProducts/NewProductsPopup";

@@ -1,5 +1,4 @@
-// CustomCheckbox.tsx
-import React, { FC } from "react";
+import { FC } from "react";
 import { red } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
 

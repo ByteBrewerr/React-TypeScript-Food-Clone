@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import orderStore from "../../../stores/ordersStore";
 import { observer } from "mobx-react-lite";
 import "./orderHistory.scss";

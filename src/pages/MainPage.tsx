@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import PagesNavigation from "../components/PagesNavigation/PagesNavigation";
 import NewProducts from "../components/NewProducts/NewProducts";
 import DeliveryInfo from "../components/DeliveryInfo/DeliveryInfo";

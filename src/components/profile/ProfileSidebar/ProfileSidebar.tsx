@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./profileSidebar.scss";
 import Confirmation from "../../../shared/modals/Confirmation/Confirmation";

@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./cart.scss";
-import { ExtendedProduct, Product } from "../../../../types/productType";
+import { ExtendedProduct } from "../../../../types/productType";
 
 type CartProps = {
   products: ExtendedProduct[];

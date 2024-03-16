@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./details.scss";
 import OneUserInfo from "../../../../shared/OneUserInfo/OneUserInfo";
 import { FaHashtag } from "react-icons/fa6";

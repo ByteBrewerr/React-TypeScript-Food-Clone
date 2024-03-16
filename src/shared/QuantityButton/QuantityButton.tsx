@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./quantityButton.scss";
 import { FaMinus, FaPlus } from "react-icons/fa";
 

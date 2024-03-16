@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./FoodItemPopup.scss";
 import { Product } from "../../../../../types/productType";
 import ProductCounter from "../../../../../shared/ProductCounter/ProductCounter";

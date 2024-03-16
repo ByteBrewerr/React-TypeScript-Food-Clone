@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import "./pagesNavigation.scss";
 import { usePopUp } from "../../hooks/usePopUp";

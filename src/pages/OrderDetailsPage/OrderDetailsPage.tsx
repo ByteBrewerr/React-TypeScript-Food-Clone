@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import orderStore from "../../stores/ordersStore";
 import { observer } from "mobx-react-lite";
@@ -9,7 +9,6 @@ import Address from "../../components/profile/SingleOrderDetails/Address/Address
 import Cart from "../../components/profile/SingleOrderDetails/Cart/Cart";
 import { usePopUp } from "../../hooks/usePopUp";
 import FeedbackPopup from "../../components/profile/FeedbackPopup/FeedbackPopup";
-import ReactDOM from "react-dom";
 import Overlay from "../../shared/modals/Overlay/Overlay";
 import { Portal } from "@mui/material";
 

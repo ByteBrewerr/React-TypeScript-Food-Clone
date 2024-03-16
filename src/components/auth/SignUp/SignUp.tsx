@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import "../auth.scss";

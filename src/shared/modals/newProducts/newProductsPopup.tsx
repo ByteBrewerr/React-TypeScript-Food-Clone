@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import newProducts from "../../../assets/newProducts.jpg";
 import "./newProductsPopup.scss";
 import { IoMdClose } from "react-icons/io";

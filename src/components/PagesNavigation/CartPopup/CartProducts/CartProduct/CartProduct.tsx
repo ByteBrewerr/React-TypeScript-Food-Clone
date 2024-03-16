@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ExtendedProduct } from "../../../../../types/productType";
 import "./cartProduct.scss";
 import { FaTrashCan } from "react-icons/fa6";

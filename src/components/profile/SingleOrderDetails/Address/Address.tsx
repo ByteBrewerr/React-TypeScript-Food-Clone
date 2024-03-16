@@ -1,4 +1,3 @@
-import React from "react";
 import "./address.scss";
 import OneUserInfo from "../../../../shared/OneUserInfo/OneUserInfo";
 import { FaLocationDot } from "react-icons/fa6";

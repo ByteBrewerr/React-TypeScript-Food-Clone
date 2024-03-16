@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { TextField, Button, CircularProgress } from "@mui/material";
 import imagePlaceholder from "../../../assets/image-placeholder.png";
 import "./feedbackPopup.scss";
