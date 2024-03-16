@@ -15,7 +15,7 @@ import { OrderType, Payment } from "../../types/orderType";
 import cartStore from "../../stores/cartStore";
 import getFormattedTime from "../../utils/getFormattedTime";
 import { MIN_ORDER_COST } from "../../constants/appConstants";
-import "./makeOrder.scss";
+import "./contactInfo.scss";
 
 const ContactInfo = () => {
   const { name, number, uid } = userStore;

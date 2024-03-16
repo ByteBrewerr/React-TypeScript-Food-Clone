@@ -1,12 +1,12 @@
 import PagesNavigation from "../components/PagesNavigation/PagesNavigation";
-import MakeOrder from "../components/MakeOrder/MakeOrder";
+import ContactInfo from "../components/MakeOrder/ContactInfo";
 
 const OrderPage = () => {
   return (
     <div className="container">
       <PagesNavigation />
       <h2>Оформление заказа</h2>
-      <MakeOrder />
+      <ContactInfo />
     </div>
   );
 };
