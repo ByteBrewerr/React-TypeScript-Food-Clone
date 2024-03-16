@@ -31,10 +31,10 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
     if (isYes && isAdminOrNotFeedbackPage) {
       const db = getDatabase();
       const feedbackRef = ref(db, `feedbacks/${orderNumber}`);
-      const userFeedbackRed = ref(db, `users/${storedUid}/orders/${orderNumber}/feedback`);
+      const userFeedbackRef = ref(db, `users/${storedUid}/orders/${orderNumber}/feedback`);
       try {
         await set(feedbackRef, null);
-        await set(userFeedbackRed, null);
+        await set(userFeedbackRef, null);
         notify("Успешно", "success");
       } catch (error) {
         notify("Ошибка", "error");
@@ -77,7 +77,6 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
             <Overlay handlePopup={handlePopUp}>
               <Confirmation text={"Вы действительно хотите удалить отзыв?"} onClick={handleDelete} />
             </Overlay>
-            ,
           </Portal>
         </>
       )}
