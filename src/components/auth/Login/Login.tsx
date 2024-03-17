@@ -37,8 +37,8 @@ const Login: FC = () => {
 
   return (
     <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
-      <TextField label="Email" {...register("email")} />
-      <TextField label="Password" type="password" {...register("password")} />
+      <TextField label="Email" {...register("email", { required: "Введите почту" })} />
+      <TextField label="Password" type="password" {...register("password", { required: "Введите пароль" })} />
       <div className="authSwitch">
         <Link to="/register">Еще нет аккаунта? Зарегистрироваться</Link>
         <Button type="submit">{isSubmitting ? <CircularProgress /> : "ВОЙТИ"}</Button>
