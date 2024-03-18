@@ -4,7 +4,9 @@
     justify-content: space-between;
     margin-top: -1rem;
    
-
+    a{
+        text-decoration: none;
+    }
     .cartButton{
         background: $button-color;
         border: 0;
