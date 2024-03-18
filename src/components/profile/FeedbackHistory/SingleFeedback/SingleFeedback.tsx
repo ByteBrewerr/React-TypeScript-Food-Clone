@@ -10,7 +10,6 @@ import Overlay from "../../../../shared/modals/Overlay/Overlay";
 import { getDatabase, ref, set } from "firebase/database";
 import notify from "../../../../utils/notify";
 import { Portal } from "@mui/material";
-import { useLocation } from "react-router";
 
 type SingleFeedbackProps = {
   date: string;
