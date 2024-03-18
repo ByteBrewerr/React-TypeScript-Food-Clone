@@ -10,6 +10,7 @@ import Overlay from "../../../../shared/modals/Overlay/Overlay";
 import { getDatabase, ref, set } from "firebase/database";
 import notify from "../../../../utils/notify";
 import { Portal } from "@mui/material";
+import { useLocation } from "react-router";
 
 type SingleFeedbackProps = {
   date: string;
@@ -23,7 +24,6 @@ type SingleFeedbackProps = {
 const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositive, img, orderNumber }) => {
   const { isPopUpVisible, handlePopUp } = usePopUp();
   const storedUid = localStorage.getItem("uid");
-
   const isFeedbackPage = window.location.pathname === "/feedback";
   const isAdminOrNotFeedbackPage = userStore.isAdmin || !isFeedbackPage;
 
@@ -67,9 +67,11 @@ const SingleFeedback: FC<SingleFeedbackProps> = ({ date, name, comment, isPositi
         {img && <img src={img} />}
         <span>{comment}</span>
       </div>
-      <button className="deleteBtn" onClick={() => handlePopUp()}>
-        Удалить
-      </button>
+      {isAdminOrNotFeedbackPage && (
+        <button className="deleteBtn" onClick={() => handlePopUp()}>
+          Удалить
+        </button>
+      )}
 
       {isPopUpVisible && (
         <>

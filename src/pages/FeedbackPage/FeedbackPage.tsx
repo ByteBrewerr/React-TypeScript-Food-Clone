@@ -20,6 +20,7 @@ const FeedbackPage = () => {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
   return (
     <div className="container feedbackPage">
       <Masonry columns={2} spacing={2}>
