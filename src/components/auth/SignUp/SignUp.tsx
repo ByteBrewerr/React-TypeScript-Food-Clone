@@ -77,7 +77,7 @@ const SignUp: FC = () => {
         type="password"
         {...register("password", {
           minLength: {
-            value: 5,
+            value: 6,
             message: "Пароль должен содержать минимум 5 символов",
           },
           required: "Введите пароль",
