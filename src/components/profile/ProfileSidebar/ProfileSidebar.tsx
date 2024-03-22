@@ -39,13 +39,6 @@ const ProfileSidebar = () => {
     handlePopUp();
   };
 
-  const portalContainer = document.getElementById("portal-container");
-
-  if (!portalContainer) {
-    alert("no portal");
-    return null;
-  }
-
   return (
     <div className="profileSidebar">
       <h3>Профиль</h3>

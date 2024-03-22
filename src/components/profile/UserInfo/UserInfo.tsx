@@ -4,19 +4,13 @@ import { observer } from "mobx-react-lite";
 import { useUserData } from "../../../hooks/useUserData";
 import { usePopUp } from "../../../hooks/usePopUp";
 import InfoChangerPopup from "./InfoChangerPopup/InfoChangerPopup";
-import ReactDOM from "react-dom";
 import Overlay from "../../../shared/modals/Overlay/Overlay";
+import Portal from "../../../shared/Portal/Portal";
 
 const UserInfo = () => {
   const userData = useUserData();
 
   const { isPopUpVisible, handlePopUp } = usePopUp();
-  const portalContainer = document.getElementById("portal-container");
-
-  if (!portalContainer) {
-    alert("no portal");
-    return null;
-  }
 
   return (
     <div className="userInfo">
@@ -27,13 +21,13 @@ const UserInfo = () => {
         ))}
       </div>
       <button onClick={() => handlePopUp()}>РЕДАКТИРОВАТЬ</button>
-      {isPopUpVisible &&
-        ReactDOM.createPortal(
+      {isPopUpVisible && (
+        <Portal>
           <Overlay handlePopup={handlePopUp}>
             <InfoChangerPopup handlePopup={handlePopUp} />
-          </Overlay>,
-          portalContainer
-        )}
+          </Overlay>
+        </Portal>
+      )}
     </div>
   );
 };
